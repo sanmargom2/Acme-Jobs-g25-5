@@ -25,6 +25,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+//@Table(indexes = {
+//	@Index(columnList = "status, moment, reference")
+//})
 public class Application extends DomainEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -52,6 +55,8 @@ public class Application extends DomainEntity {
 	@NotBlank
 	@Column(length = 1024)
 	private String				qualifications;
+
+	private String				justification;
 
 	// Relationships -------------------
 

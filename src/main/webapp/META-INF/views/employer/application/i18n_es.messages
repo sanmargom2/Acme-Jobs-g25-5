@@ -2,6 +2,7 @@ employer.application.list.label.moment = Fecha de creación
 employer.application.list.label.status = Estado
 employer.application.list.label.worker = Trabajador
 employer.application.list.label.job = Trabajo
+employer.application.list.label.reference = Número de referencia
 
 employer.application.form.label.reference = Número de referencia
 employer.application.form.label.moment = Fecha de creación
@@ -12,3 +13,6 @@ employer.application.form.label.qualifications = Calificaciones
 employer.application.form.label.worker = Trabajador
 employer.application.form.label.job = Trabajo
 employer.application.form.return = Volver
+employer.application.form.label.accept = Aceptar
+employer.application.form.label.reject = Rechazar
+employer.application.form.label.justification = Justificación del rechazo (Por favor, especifique la causa del rechazo)

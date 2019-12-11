@@ -1,3 +1,4 @@
+
 package acme.features.authenticated.job;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,47 +18,45 @@ public class AuthenticatedJobShowService implements AbstractShowService<Authenti
 	@Autowired
 	AuthenticatedJobRepository repository;
 
+
 	@Override
-	public boolean authorise(Request<Job> request) {
-		// TODO Auto-generated method stub
+	public boolean authorise(final Request<Job> request) {
 		assert request != null;
 		boolean result;
 		Job job;
 		int jobId;
 		Employer employer;
 		Principal principal;
-		
-		jobId=request.getModel().getInteger("id");
-		job=this.repository.findOneById(jobId);
-		
-		employer=job.getEmployer();
-		principal=request.getPrincipal();
-		result=job.getFinalMode()||!job.getFinalMode()&&employer.getUserAccount().getId()==principal.getAccountId();
+
+		jobId = request.getModel().getInteger("id");
+		job = this.repository.findOneById(jobId);
+
+		employer = job.getEmployer();
+		principal = request.getPrincipal();
+		result = job.getFinalMode() || !job.getFinalMode() && employer.getUserAccount().getId() == principal.getAccountId();
 		return result;
 	}
 
 	@Override
-	public void unbind(Request<Job> request, Job entity, Model model) {
-		// TODO Auto-generated method stub
+	public void unbind(final Request<Job> request, final Job entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 
-	request.unbind(entity, model, "referenceNumber", "title", "deadline");
-	request.unbind(entity, model, "finalMode", "salary", "moreInfo");
+		request.unbind(entity, model, "referenceNumber", "title", "deadline");
+		request.unbind(entity, model, "finalMode", "salary", "moreInfo");
 
 	}
 
 	@Override
-	public Job findOne(Request<Job> request) {
-		// TODO Auto-generated method stub
+	public Job findOne(final Request<Job> request) {
 		assert request != null;
 
 		Job result;
-		int id;
+		int jobId;
 
-		id = request.getModel().getInteger("id");
-		result = this.repository.findOneById(id);
+		jobId = request.getModel().getInteger("id");
+		result = this.repository.findOneById(jobId);
 
 		return result;
 	}
