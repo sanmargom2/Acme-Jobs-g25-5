@@ -63,6 +63,12 @@ public class EmployerApplicationRejectService implements AbstractUpdateService<E
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
+		Boolean isValid;
+		if (!errors.hasErrors("justification")) {
+			isValid = !entity.getJustification().equals("");
+			errors.state(request, isValid, "justification", "employer.application.form.error.justification");
+		}
 	}
 
 	@Override

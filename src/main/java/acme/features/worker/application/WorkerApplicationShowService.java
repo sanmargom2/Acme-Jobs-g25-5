@@ -57,10 +57,6 @@ public class WorkerApplicationShowService implements AbstractShowService<Worker,
 		id = request.getModel().getInteger("id");
 		result = this.repository.findOneById(id);
 
-		//		if (result.getWorker() != null) {
-		//			result.setStatus(result.getStatus() + "- by " + result.getWorker().getAuthorityName());
-		//		}
-
 		return result;
 	}
 

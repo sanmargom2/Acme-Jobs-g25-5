@@ -559,7 +559,7 @@
 		<property name="statement" value="Statement 1" />
 		<property name="skills" value="Skill 1, Skill 2" />
 		<property name="qualifications" value="Qualification 1, Qualification 2" />
-		<property name="justification" value=" " />
+		<property name="justification" value="" />
 		<property name="worker" ref="worker1Worker" />
 		<property name="job" ref="job1" />
 	</bean>
@@ -571,7 +571,7 @@
 		<property name="statement" value="Statement 2" />
 		<property name="skills" value="Skill 1, Skill 2" />
 		<property name="qualifications" value="Qualification 1, Qualification 2" />
-		<property name="justification" value=" " />
+		<property name="justification" value="" />
 		<property name="worker" ref="worker2Worker" />
 		<property name="job" ref="job2" />
 	</bean>
@@ -595,7 +595,7 @@
 		<property name="statement" value="Statement 1" />
 		<property name="skills" value="Skill 1, Skill 2" />
 		<property name="qualifications" value="Qualification 1, Qualification 2" />
-		<property name="justification" value=" " />
+		<property name="justification" value="" />
 		<property name="worker" ref="worker1Worker" />
 		<property name="job" ref="job2" />
 	</bean>
@@ -607,7 +607,7 @@
 		<property name="statement" value="Statement 1" />
 		<property name="skills" value="Skill 1, Skill 2" />
 		<property name="qualifications" value="Qualification 1, Qualification 2" />
-		<property name="justification" value=" " />
+		<property name="justification" value="" />
 		<property name="worker" ref="worker2Worker" />
 		<property name="job" ref="job3" />
 	</bean>
@@ -619,7 +619,7 @@
 		<property name="statement" value="Statement 1" />
 		<property name="skills" value="Skill 1, Skill 2" />
 		<property name="qualifications" value="Qualification 1, Qualification 2" />
-		<property name="justification" value=" " />
+		<property name="justification" value="" />
 		<property name="worker" ref="worker2Worker" />
 		<property name="job" ref="job1" />
 	</bean>
@@ -631,7 +631,7 @@
 		<property name="statement" value="Statement 1" />
 		<property name="skills" value="Skill 1, Skill 2" />
 		<property name="qualifications" value="Qualification 1, Qualification 2" />
-		<property name="justification" value=" " />
+		<property name="justification" value="" />
 		<property name="worker" ref="worker1Worker" />
 		<property name="job" ref="job1" />
 	</bean>
@@ -642,7 +642,7 @@
 		<property name="status" value="PENDING" />
 		<property name="statement" value="Statement 1" />
 		<property name="skills" value="Skill 1, Skill 2" />
-		<property name="justification" value=" " />
+		<property name="justification" value="" />
 		<property name="qualifications" value="Qualification 1, Qualification 2" />
 		<property name="worker" ref="worker2Worker" />
 		<property name="job" ref="job1" />

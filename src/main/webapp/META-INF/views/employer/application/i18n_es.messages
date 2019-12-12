@@ -15,4 +15,5 @@ employer.application.form.label.job = Trabajo
 employer.application.form.return = Volver
 employer.application.form.label.accept = Aceptar
 employer.application.form.label.reject = Rechazar
-employer.application.form.label.justification = Justificación del rechazo (Por favor, especifique la causa del rechazo)
+employer.application.form.label.justification = Justificación del rechazo
+employer.application.form.error.justification = Tiene que especificar una justificación del rechazo
