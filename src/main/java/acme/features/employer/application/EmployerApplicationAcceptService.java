@@ -63,6 +63,12 @@ public class EmployerApplicationAcceptService implements AbstractUpdateService<E
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
+		Boolean isValid;
+		if (!errors.hasErrors("status")) {
+			isValid = entity.getStatus().equals(TypeStatus.PENDING);
+			errors.state(request, isValid, "status", "employer.application.form.error.status");
+		}
 	}
 
 	@Override
