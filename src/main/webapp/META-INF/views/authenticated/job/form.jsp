@@ -13,7 +13,7 @@
 	<acme:form-textbox code="employer.job.form.label.moreInfo" path="moreInfo" />
 
 	<security:authorize access="hasRole('Worker')">
-		<acme:form-hidden path="id" />
+		<acme:form-hidden path="jobId" />
 		<acme:form-submit code="worker.job.form.label.application" method="get" action="/worker/application/create?jobId=${id}" />
 	</security:authorize>
 </acme:form>

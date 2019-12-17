@@ -56,6 +56,19 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		Application result;
 
 		result = new Application();
+		Date moment;
+		moment = new Date(System.currentTimeMillis() - 1);
+
+		int jobId = request.getModel().getInteger("jobId");
+		Job j = this.jobRepository.findOneById(jobId);
+
+		Principal principal = request.getPrincipal();
+		Worker w = this.repository.findByUserAccountId(principal.getAccountId());
+
+		result.setMoment(moment);
+		result.setJob(j);
+		result.setWorker(w);
+		result.setStatus(TypeStatus.PENDING);
 
 		return result;
 	}
@@ -66,42 +79,30 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		assert entity != null;
 		assert errors != null;
 
-		int jobId;
-		Job j;
-
-		jobId = request.getModel().getInteger("id");
-		j = this.jobRepository.findOneById(jobId);
-
-		Boolean isValid;
-		if (!errors.hasErrors("finalMode")) {
-			isValid = j.getFinalMode() == true;
-			errors.state(request, isValid, "finalMode", "worker.application.form.error.finalMode");
-		}
-
-		Boolean isValid2;
-		if (!errors.hasErrors("deadline")) {
-			Date fecha = new Date(System.currentTimeMillis() - 1);
-			isValid2 = j.getDeadline().after(fecha);
-			errors.state(request, isValid2, "deadline", "worker.application.form.error.deadline");
-		}
+		//		int jobId;
+		//		Job j;
+		//
+		//		jobId = request.getModel().getInteger("id");
+		//		j = this.jobRepository.findOneById(jobId);
+		//
+		//		Boolean isValid;
+		//		if (!errors.hasErrors("finalMode")) {
+		//			isValid = j.getFinalMode() == true;
+		//			errors.state(request, isValid, "finalMode", "worker.application.form.error.finalMode");
+		//		}
+		//
+		//		Boolean isValid2;
+		//		if (!errors.hasErrors("deadline")) {
+		//			Date fecha = new Date(System.currentTimeMillis() - 1);
+		//			isValid2 = j.getDeadline().after(fecha);
+		//			errors.state(request, isValid2, "deadline", "worker.application.form.error.deadline");
+		//		}
 
 	}
 
 	@Override
 	public void create(final Request<Application> request, final Application entity) {
-		Date moment;
-		moment = new Date(System.currentTimeMillis() - 1);
 
-		int jobId = request.getModel().getInteger("id");
-		Job j = this.jobRepository.findOneById(jobId);
-
-		Principal principal = request.getPrincipal();
-		Worker w = this.repository.findByUserAccountId(principal.getAccountId());
-
-		entity.setMoment(moment);
-		entity.setJob(j);
-		entity.setWorker(w);
-		entity.setStatus(TypeStatus.PENDING);
 		this.repository.save(entity);
 	}
 

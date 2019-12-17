@@ -14,6 +14,6 @@
 	<jstl:if test="${status == 'REJECTED'}">
 		<acme:form-textarea code="worker.application.form.label.justification" path="justification"/>
 	</jstl:if>
-	<acme:form-submit test="${command == 'create'}" code="worker.application.form.button.create" action="/worker/application/create/" />
+	<acme:form-submit test="${command == 'create'}" code="worker.application.form.button.create" action="/worker/application/create?jobId=${jobId}" />
 	<acme:form-return code="worker.application.form.return" />
 </acme:form>
