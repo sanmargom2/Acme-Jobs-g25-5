@@ -6,43 +6,37 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.customisations.Customisation;
+import acme.entities.members.Member;
 import acme.entities.messageThreads.MessageThread;
 import acme.entities.messages.Message;
+import acme.features.administrator.customisation.AdministratorCustomisationRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.HttpMethod;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
-import acme.framework.entities.Principal;
 import acme.framework.services.AbstractCreateService;
 
 @Service
 public class AuthenticatedMessageCreateService implements AbstractCreateService<Authenticated, Message> {
 
 	@Autowired
-	private AuthenticatedMessageRepository repository;
+	private AuthenticatedMessageRepository	repository;
+
+	@Autowired
+	AdministratorCustomisationRepository	customisationRepository;
 
 
 	@Override
 	public boolean authorise(final Request<Message> request) {
 		assert request != null;
 
-		boolean result = false;
-		int messageId;
-		MessageThread message;
-		Principal principal;
+		Member member;
 
-		messageId = request.getModel().getInteger("threadId");
+		member = this.repository.findMembers(request.getModel().getInteger("messageThread.id"), request.getPrincipal().getActiveRoleId());
 
-		message = this.repository.findOneMessageThreadById(messageId);
-		principal = request.getPrincipal();
-		for (Authenticated a : message.getMembers()) {
-			if (a.getUserAccount().getId() == principal.getAccountId()) {
-				result = true;
-			}
-		}
-
-		return result;
+		return member != null;
 	}
 
 	@Override
@@ -51,7 +45,7 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(request, errors, "moment");
+		request.bind(request, errors);
 
 	}
 
@@ -61,7 +55,7 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(request, model, "title", "tags", "body", "messageThread");
+		request.unbind(request, model, "title", "moment", "tags", "body", "authenticated.userAccount.username", "messageThread.id", "messageThread.title");
 
 		if (request.isMethod(HttpMethod.GET)) {
 			model.setAttribute("accept", "false");
@@ -75,9 +69,13 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 	public Message instantiate(final Request<Message> request) {
 		Message result;
 		result = new Message();
-
 		MessageThread messageThread;
-		int id = request.getModel().getInteger("threadId");
+		Authenticated authenticated;
+
+		authenticated = this.repository.findAuthenticatedById(request.getPrincipal().getActiveRoleId());
+		result.setAuthenticated(authenticated);
+
+		int id = request.getModel().getInteger("messageThread.id");
 		messageThread = this.repository.findOneMessageThreadById(id);
 		result.setMessageThread(messageThread);
 
@@ -90,10 +88,49 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert entity != null;
 		assert errors != null;
 
+		Message message;
+		Customisation c;
+		Boolean isValidTitle = true;
+		Boolean isValidTags = true;
+		Boolean isValidBody = true;
+		Integer id;
+
+		id = request.getModel().getInteger("id");
+		message = this.repository.findOneMessageById(id);
+
+		if (entity.getId() != 0) {
+			c = this.customisationRepository.findOne();
+			//Cambiar a Customisations
+			String[] partes = c.getCustomisationsEs().split(",");
+
+			for (String parte : partes) {
+				if (message.getTitle().contains(parte.trim())) {// falta spam
+					isValidTitle = false;
+				}
+				if (message.getTags().contains(parte.trim())) {
+					isValidTags = false;
+				}
+				if (message.getBody().contains(parte.trim())) {
+					isValidBody = false;
+				}
+			}
+		}
+		if (isValidTitle == false) {
+			errors.state(request, isValidTitle, "title", "authenticated.message.form.error.title");
+		}
+		if (isValidTags == false) {
+			errors.state(request, isValidTags, "tags", "authenticated.message.form.error.tags");
+		}
+		if (isValidBody == false) {
+			errors.state(request, isValidBody, "body", "authenticated.message.form.error.body");
+		}
+
 	}
 
 	@Override
 	public void create(final Request<Message> request, final Message entity) {
+		assert request != null;
+		assert entity != null;
 
 		Date moment;
 		moment = new Date(System.currentTimeMillis() - 1);

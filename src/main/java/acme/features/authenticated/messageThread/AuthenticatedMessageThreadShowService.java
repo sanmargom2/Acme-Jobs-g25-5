@@ -1,13 +1,11 @@
 
 package acme.features.authenticated.messageThread;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.members.Member;
 import acme.entities.messageThreads.MessageThread;
-import acme.framework.components.HttpMethod;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
@@ -27,17 +25,16 @@ public class AuthenticatedMessageThreadShowService implements AbstractShowServic
 
 		boolean result = false;
 		int messageThreadId;
-		MessageThread messageThread;
+		Member member;
 		Principal principal;
 
 		messageThreadId = request.getModel().getInteger("id");
-		messageThread = this.repository.findOneMessageThreadById(messageThreadId);
 		principal = request.getPrincipal();
+		member = this.repository.findMembers(messageThreadId, principal.getActiveRoleId());
 
-		for (Authenticated a : messageThread.getMembers()) {
-			if (a.getUserAccount().getId() == principal.getAccountId()) {
-				result = true;
-			}
+		result = member != null;
+		if (result) {
+			request.getServletRequest().setAttribute("author", member.isAuthor());
 		}
 
 		return result;
@@ -50,18 +47,7 @@ public class AuthenticatedMessageThreadShowService implements AbstractShowServic
 		assert entity != null;
 		assert model != null;
 
-		Collection<String> membersCollection = this.repository.findMembers(request.getModel().getInteger("id"));
-		String members = "";
-		for (String s : membersCollection) {
-			members += s + ", ";
-		}
-		request.unbind(entity, model, "title", "moment");
-		if (request.isMethod(HttpMethod.GET)) {
-
-			model.setAttribute("members", members);
-		} else {
-			request.transfer(model, "members");
-		}
+		request.unbind(entity, model, "title", "moment", "id");
 
 	}
 

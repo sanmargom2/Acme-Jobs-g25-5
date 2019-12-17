@@ -4,8 +4,8 @@ package acme.features.authenticated.message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.members.Member;
 import acme.entities.messages.Message;
-import acme.features.authenticated.messageThread.AuthenticatedMessageThreadRepository;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
@@ -16,10 +16,7 @@ import acme.framework.services.AbstractShowService;
 public class AuthenticatedMessageShowService implements AbstractShowService<Authenticated, Message> {
 
 	@Autowired
-	AuthenticatedMessageThreadRepository	repository;
-
-	@Autowired
-	AuthenticatedMessageRepository			repo;
+	AuthenticatedMessageRepository repository;
 
 
 	@Override
@@ -27,19 +24,20 @@ public class AuthenticatedMessageShowService implements AbstractShowService<Auth
 		assert request != null;
 
 		boolean result = false;
-		int messageId;
-		Message message;
+		int threadId;
+		Member member;
 		Principal principal;
+		Message message;
 
-		messageId = request.getModel().getInteger("id");
-
-		message = this.repo.findOneMessageById(messageId);
 		principal = request.getPrincipal();
-		for (Authenticated a : message.getMessageThread().getMembers()) {
-			if (a.getUserAccount().getId() == principal.getAccountId()) {
-				result = true;
-			}
-		}
+
+		Integer messageId = request.getModel().getInteger("id");
+
+		message = this.repository.findOneMessageById(messageId);
+		threadId = message.getMessageThread().getId();
+		member = this.repository.findMembers(threadId, principal.getActiveRoleId());
+
+		result = member != null;
 
 		return result;
 	}
@@ -51,7 +49,7 @@ public class AuthenticatedMessageShowService implements AbstractShowService<Auth
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "moment", "tags", "body");
+		request.unbind(entity, model, "title", "moment", "tags", "body", "authenticated.userAccount.username", "messageThread.id", "messageThread.title");
 	}
 
 	@Override
@@ -62,7 +60,7 @@ public class AuthenticatedMessageShowService implements AbstractShowService<Auth
 		int id;
 
 		id = request.getModel().getInteger("id");
-		result = this.repo.findOneMessageById(id);
+		result = this.repository.findOneMessageById(id);
 
 		return result;
 	}
