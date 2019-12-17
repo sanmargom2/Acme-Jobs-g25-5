@@ -1,6 +1,7 @@
 
 package acme.features.worker.application;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
