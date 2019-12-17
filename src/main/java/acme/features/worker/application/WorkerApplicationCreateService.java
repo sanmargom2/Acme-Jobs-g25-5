@@ -36,17 +36,15 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		assert request != null;
 		boolean result;
 
-		Application ap;
-		int appId;
-		Worker worker;
+		int jobId = request.getModel().getInteger("jobId");
+		Job job = this.jobRepository.findOneById(jobId);
+
 		Principal principal;
-
-		appId = request.getModel().getInteger("id");
-		ap = this.repository.findOneById(appId);
-
-		worker = ap.getWorker();
 		principal = request.getPrincipal();
-		result = worker.getUserAccount().getId() == principal.getAccountId();
+
+		Collection<Job> jobsByWorker = this.jobRepository.findJobsByWorker(principal.getActiveRoleId());
+
+		result = !jobsByWorker.contains(job);
 
 		return result;
 	}
@@ -98,27 +96,6 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-
-		//comprobar que no se pueda aplicar a una dnd ya esta aplicado
-
-		int jobId;
-		Job j;
-
-		jobId = request.getModel().getInteger("id");
-		j = this.jobRepository.findOneById(jobId);
-
-		Boolean isValid;
-		if (!errors.hasErrors("finalMode")) {
-			isValid = j.isFinalMode();
-			errors.state(request, isValid, "finalMode", "worker.application.form.error.finalMode");
-		}
-
-		Boolean isValid2;
-		if (!errors.hasErrors("deadline")) {
-			Date fecha = new Date(System.currentTimeMillis() - 1);
-			isValid2 = j.getDeadline().after(fecha);
-			errors.state(request, isValid2, "deadline", "worker.application.form.error.deadline");
-		}
 
 	}
 
