@@ -229,7 +229,7 @@
 	<!-- Customisation -->
 	<bean id="customisation" class="acme.entities.customisations.Customisation">
 		<property name="customisationsEn" value="sex, hard core, viagra, cialis,  nigeria, you’ve won, million dollar" />
-		<property name="customisationsEs" value="sexo, hard core viagra, cialis,  nigeria, has ganado, millon dolares" />
+		<property name="customisationsEs" value="sexo, hard core, viagra, cialis,  nigeria, has ganado, millon dolares" />
 		<property name="threshold" value="1.00" />
 	</bean>
 
@@ -652,7 +652,7 @@
 	<bean id="duty1" class="acme.entities.duties.Duty">
 		<property name="title" value="Duty1" />
 		<property name="description" value="Duty number one" />
-		<property name="percentage" value="51" />
+		<property name="percentage" value="57" />
 		<property name="job" ref="job1"/>
 	</bean>
 	
@@ -665,7 +665,7 @@
 		<bean id="duty3" class="acme.entities.duties.Duty">
 		<property name="title" value="Duty3" />
 		<property name="description" value="Duty number three" />
-		<property name="percentage" value="53" />
+		<property name="percentage" value="43" />
 		<property name="job" ref="job1"/>
 	</bean>
 	

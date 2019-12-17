@@ -15,3 +15,8 @@ employer.job.list.label.deadline = Fecha límite
 employer.job.list.label.title = Título
 employer.job.list.label.finalMode = Modo
 employer.job.list.label.referenceNumber = Número de referencia
+
+
+employer.job.form.button.create= Registrar
+employer.job.form.button.update = Editar 
+employer.job.form.button.delete = Eliminar
