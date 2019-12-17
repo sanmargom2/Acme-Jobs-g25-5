@@ -54,6 +54,7 @@ master.menu.provider = Provider
 master.menu.provider.favourite-link = Favourite link
 master.menu.requests = Requests
 master.menu.provider.request.create = Create Requests
+master.menu.authenticated.job = Job
 
 # master.menu.worker ########################################################
 master.menu.worker.application = Applications

@@ -77,6 +77,8 @@
 			<acme:menu-suboption code="master.menu.anonymous.announcements" action="/authenticated/announcement/list" />
 			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.authenticated.messagethread" action="/authenticated/message-thread/list-mine" />
+			<acme:menu-separator />
+			<acme:menu-suboption code="master.menu.authenticated.job" action="/authenticated/job/list-mine" />
 			<acme:menu-suboption code="master.menu.authenticated.messageThread.create" action="/authenticated/message-thread/create" />
 		</acme:menu-option>
 

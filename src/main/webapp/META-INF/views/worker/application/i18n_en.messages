@@ -12,3 +12,10 @@ worker.application.form.label.qualifications = Qualifications
 worker.application.form.label.worker = Worker
 worker.application.form.label.job = Job
 worker.application.form.return = Return
+
+worker.application.form.button.create = Apply
+
+worker.application.form.label.justification = Reject justification
+
+worker.application.form.error.finalMode = You can't apply because the job is not published
+worker.application.form.error.deadline = You can't apply because the deadline hasn't elapsed

@@ -98,6 +98,7 @@ master.menu.authenticated=Autentificado
 master.menu.authenticated.offer=Ofertas
 master.menu.administrator.company-record=Company Record 
 master.menu.authenticated.challenge = Retos
+master.menu.authenticated.job = Trabajo
 
 master.menu.employer = Empleado
 master.menu.worker = Trabajador

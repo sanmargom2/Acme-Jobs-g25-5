@@ -18,4 +18,13 @@ public interface EmployerApplicationRepository extends AbstractRepository {
 	@Query("select a from Application a where a.id = ?1")
 	Application findOneById(int id);
 
+	@Query("select a from Application a group by a.status")
+	Collection<Application> findAppsGroupByStatus();
+
+	@Query("select a from Application a group by a.moment")
+	Collection<Application> findAppsGroupByMoment();
+
+	@Query("select a from Application a group by a.reference")
+	Collection<Application> findAppsGroupByReference();
+
 }
