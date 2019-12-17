@@ -17,3 +17,4 @@ employer.application.form.label.accept = Accept
 employer.application.form.label.reject = Reject
 employer.application.form.label.justification = Reject justification
 employer.application.form.error.justification = You have to specify a reject justification
+employer.application.form.error.status = This application is already accepted or rejected

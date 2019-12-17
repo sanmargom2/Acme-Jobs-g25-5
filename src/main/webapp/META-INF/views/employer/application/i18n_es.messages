@@ -17,3 +17,4 @@ employer.application.form.label.accept = Aceptar
 employer.application.form.label.reject = Rechazar
 employer.application.form.label.justification = Justificación del rechazo
 employer.application.form.error.justification = Tiene que especificar una justificación del rechazo
+employer.application.form.error.status = Esta aplicación ya esta aceptada o rechazada
