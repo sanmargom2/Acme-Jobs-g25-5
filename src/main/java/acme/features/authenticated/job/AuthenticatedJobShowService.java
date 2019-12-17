@@ -32,7 +32,7 @@ public class AuthenticatedJobShowService implements AbstractShowService<Authenti
 		
 		employer=job.getEmployer();
 		principal=request.getPrincipal();
-		result=job.getFinalMode()||!job.getFinalMode()&&employer.getUserAccount().getId()==principal.getAccountId();
+		result=job.isFinalMode()||!job.isFinalMode()&&employer.getUserAccount().getId()==principal.getAccountId();
 		return result;
 	}
 
