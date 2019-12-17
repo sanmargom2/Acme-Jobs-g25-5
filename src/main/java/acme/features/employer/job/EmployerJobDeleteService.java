@@ -1,3 +1,4 @@
+
 package acme.features.employer.job;
 
 import java.util.Collection;
@@ -5,7 +6,6 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.applications.Application;
 import acme.entities.auditRecords.AuditRecord;
 import acme.entities.duties.Duty;
 import acme.entities.jobs.Job;
@@ -23,19 +23,20 @@ import acme.framework.services.AbstractDeleteService;
 public class EmployerJobDeleteService implements AbstractDeleteService<Employer, Job> {
 
 	@Autowired
-	EmployerJobRepository employerJobRepository;
+	EmployerJobRepository			employerJobRepository;
 
 	@Autowired
-	AuditorAuditRecordRepository auditorRepository;
+	AuditorAuditRecordRepository	auditorRepository;
 
 	@Autowired
-	EmployerDutyRepository employerDutyRepository;
+	EmployerDutyRepository			employerDutyRepository;
 
 	@Autowired
-	EmployerApplicationRepository employerAppRepository;
+	EmployerApplicationRepository	employerAppRepository;
+
 
 	@Override
-	public boolean authorise(Request<Job> request) {
+	public boolean authorise(final Request<Job> request) {
 		// TODO Auto-generated method stub
 		assert request != null;
 		boolean result;
@@ -54,7 +55,7 @@ public class EmployerJobDeleteService implements AbstractDeleteService<Employer,
 	}
 
 	@Override
-	public void bind(Request<Job> request, Job entity, Errors errors) {
+	public void bind(final Request<Job> request, final Job entity, final Errors errors) {
 		// TODO Auto-generated method stub
 		assert request != null;
 		assert entity != null;
@@ -64,19 +65,18 @@ public class EmployerJobDeleteService implements AbstractDeleteService<Employer,
 	}
 
 	@Override
-	public void unbind(Request<Job> request, Job entity, Model model) {
+	public void unbind(final Request<Job> request, final Job entity, final Model model) {
 		// TODO Auto-generated method stub
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 
 		request.unbind(entity, model, "referenceNumber", "title", "finalMode");
-		request.unbind(entity, model, "referenceNumber", "title", "deadline", "finalMode", "salary", "description",
-				"moreInfo");
+		request.unbind(entity, model, "referenceNumber", "title", "deadline", "finalMode", "salary", "description", "moreInfo");
 	}
 
 	@Override
-	public Job findOne(Request<Job> request) {
+	public Job findOne(final Request<Job> request) {
 		// TODO Auto-generated method stub
 		assert request != null;
 
@@ -90,23 +90,23 @@ public class EmployerJobDeleteService implements AbstractDeleteService<Employer,
 	}
 
 	@Override
-	public void validate(Request<Job> request, Job entity, Errors errors) {
+	public void validate(final Request<Job> request, final Job entity, final Errors errors) {
 		// TODO Auto-generated method stub
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
 		int jobId = entity.getId();
-		Boolean isValid=true;
-		if(this.employerAppRepository.findAppsByJob(jobId)!=null) {
+		Boolean isValid = true;
+		if (!this.employerAppRepository.findAppsByJob(jobId).isEmpty()) {
 			isValid = false;
 		}
-		if(isValid==false) {
+		if (isValid == false) {
 			errors.state(request, isValid, "referenceNumber", "employer.job.form.error.reference");
 		}
 	}
 
 	@Override
-	public void delete(Request<Job> request, Job entity) {
+	public void delete(final Request<Job> request, final Job entity) {
 		// TODO Auto-generated method stub
 		assert request != null;
 		assert entity != null;

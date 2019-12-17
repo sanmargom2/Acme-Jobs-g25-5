@@ -93,6 +93,8 @@ master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.announcement = Announcements
 master.menu.provider.request = Create Request
 master.menu.administrator.company-record=Company Record
+master.menu.user-account.become-worker = Become a worker
+master.menu.user-account.become-employer = Become a employer
 # master.menu.investor ##########################################################
 
 master.menu.investor = Investor
