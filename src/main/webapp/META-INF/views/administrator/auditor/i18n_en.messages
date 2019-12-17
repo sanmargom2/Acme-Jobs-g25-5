@@ -1,0 +1,10 @@
+
+administrator.auditor.list.label.firm= Firm
+administrator.auditor.list.label.responsabilityStatement= Responsability Statement
+
+
+administrator.auditor.form.label.firm = Firm: 
+administrator.auditor.form.label.responsabilityStat = responsability Statement:
+
+administrator.auditor.form.button.update = Accept
+administrator.auditor.form.button.return = Return
