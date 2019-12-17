@@ -95,6 +95,14 @@ public class EmployerJobDeleteService implements AbstractDeleteService<Employer,
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		int jobId = entity.getId();
+		Boolean isValid=true;
+		if(this.employerAppRepository.findAppsByJob(jobId)!=null) {
+			isValid = false;
+		}
+		if(isValid==false) {
+			errors.state(request, isValid, "referenceNumber", "employer.job.form.error.reference");
+		}
 	}
 
 	@Override
@@ -106,9 +114,7 @@ public class EmployerJobDeleteService implements AbstractDeleteService<Employer,
 
 		Collection<AuditRecord> auditRecords = this.auditorRepository.findAuditRecordsByJob(jobId);
 		Collection<Duty> duties = this.employerDutyRepository.findManyDuty(jobId);
-		Collection<Application> apps = this.employerAppRepository.findAppsByJob(jobId);
 
-		this.employerAppRepository.deleteAll(apps);
 		this.auditorRepository.deleteAll(auditRecords);
 		this.employerDutyRepository.deleteAll(duties);
 		this.employerJobRepository.delete(entity);

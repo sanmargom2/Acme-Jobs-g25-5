@@ -16,6 +16,8 @@ employer.job.list.label.title = Título
 employer.job.list.label.finalMode = Modo
 employer.job.list.label.referenceNumber = Número de referencia
 
+employer.job.form.error.reference = Hay alguna/s aplicacion/es ! No se puede borrar.
+
 employer.job.form.error.finalMode = No puedes guardar el archivo en final mode.
 employer.job.form.button.create= Registrar
 employer.job.form.button.update = Editar 
