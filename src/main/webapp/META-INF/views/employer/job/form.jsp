@@ -12,9 +12,20 @@
 	<acme:form-money code="employer.job.form.label.salary" path="salary" />
 	<acme:form-url code="employer.job.form.label.moreInfo" path="moreInfo" />
 
+	<acme:form-submit test="${command == 'show'}" code="employer.job.form.button.update" action="/employer/job/update/" />
+	<acme:form-submit test="${command == 'show'}" code="employer.job.form.button.delete" action="/employer/job/delete/" />
+	
+	
+	<acme:form-submit test="${command=='create' }" code="employer.job.form.button.create" action="/employer/job/create" />
+
+	<acme:form-submit test="${command=='update' }	" code="employer.job.form.button.update" action="/employer/job/update" />
+
+	<acme:form-submit test="${command=='delete' }" code="employer.job.form.button.delete" action="/employer/job/delete" />
+
 	<acme:form-hidden path="id" />
 	<acme:form-submit code="employer.job.form.label.duty" method="get" action="/employer/duty/list?id=${id}" />
 
-	<acme:form-return code="employer.job.form.return" />
 
+
+	<acme:form-return code="employer.job.form.return" />
 </acme:form>
