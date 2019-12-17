@@ -117,9 +117,8 @@
     create table `customisation` (
        `id` integer not null,
         `version` integer not null,
-        `customisations_en` varchar(1024),
-        `customisations_es` varchar(1024),
-        `threshold` double precision,
+        `customisations` varchar(1024),
+        `threshold` integer,
         primary key (`id`)
     ) engine=InnoDB;
 
@@ -158,7 +157,6 @@
         `deadline` datetime(6),
         `description` varchar(1024),
         `final_mode` bit not null,
-
         `more_info` varchar(255),
         `reference_number` varchar(255),
         `salary_amount` double precision,

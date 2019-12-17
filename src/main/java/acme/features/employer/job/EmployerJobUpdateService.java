@@ -55,8 +55,16 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "referenceNumber", "title", "deadline", "finalMode", "salary", "description",
-				"moreInfo");
+		Job j;
+		Integer jobId = request.getModel().getInteger("id");
+		j = this.employerJobRepository.findOneById(jobId);
+
+		if (j.isFinalMode()) {
+			request.unbind(entity, model);
+		} else {
+			request.unbind(entity, model, "referenceNumber", "title", "deadline", "finalMode", "salary", "description",
+					"moreInfo");
+		}
 	}
 
 	@Override
@@ -83,14 +91,18 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		Customisation c;
 		Boolean isValid = true;
 		Integer jobId = request.getModel().getInteger("id");
+		j = this.employerJobRepository.findOneById(jobId);
 
 		if (entity.getId() != 0) {
-			j = this.employerJobRepository.findOneById(jobId);
+			
+
 			if (entity.isFinalMode() == true) {
+
 				c = this.customisationRepository.findOne();
-				String[] partes = c.getCustomisationsEs().split(",");
+				String[] partes = c.getCustomisations().split(",");
 				Integer porcentaje = 0;
 				Collection<Duty> dutties = this.employerDutyRepository.findManyDuty(jobId);
+
 				List<Duty> dutis = new ArrayList<>(dutties);
 				for (int i = 0; i < dutis.size(); i++) {
 					porcentaje += dutis.get(i).getPercentage();
@@ -108,9 +120,15 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 			}
 		}
 		if (isValid == false) {
+			j.setFinalMode(false);
 			errors.state(request, isValid, "finalMode", "employer.job.form.error.finalMode");
 		}
 
+		Boolean isValid2;
+		if (!errors.hasErrors("finalMode")) {
+			isValid2 = !entity.isFinalMode();
+			errors.state(request, isValid2, "finalMode", "employer.job.form.error.finalMode");
+		}
 	}
 
 	@Override
