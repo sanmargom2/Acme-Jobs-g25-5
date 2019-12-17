@@ -65,6 +65,7 @@ master.menu.auditor.auditRecord.list.mine=My auditors
 # master.menu.employer ########################################################
 master.menu.employer.application = Applications
 master.menu.employer.application.list = List application
+master.menu.employer.job.create = Create Job
 
 # master.menu.consumer ##########################################################
 

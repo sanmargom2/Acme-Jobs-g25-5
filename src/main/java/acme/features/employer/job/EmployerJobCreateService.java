@@ -1,20 +1,14 @@
 package acme.features.employer.job;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
-import acme.entities.duties.Duty;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
 import acme.features.administrator.customisation.AdministratorCustomisationRepository;
+import acme.features.authenticated.employer.AuthenticatedEmployerRepository;
 import acme.features.employer.duty.EmployerDutyRepository;
 import acme.framework.components.Errors;
-import acme.framework.components.HttpMethod;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.services.AbstractCreateService;
@@ -29,18 +23,21 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 	EmployerDutyRepository employerDutyRepository;
 
 	@Autowired
+	AuthenticatedEmployerRepository authenticatedEmployerRepository;
+
+	@Autowired
 	AdministratorCustomisationRepository customisationRepository;
 
 	@Override
 	public boolean authorise(Request<Job> request) {
-		// TODO Auto-generated method stub
+
 		assert request != null;
 		return true;
 	}
 
 	@Override
 	public void bind(Request<Job> request, Job entity, Errors errors) {
-		// TODO Auto-generated method stub
+
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
@@ -50,30 +47,35 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 
 	@Override
 	public void unbind(Request<Job> request, Job entity, Model model) {
-		// TODO Auto-generated method stub
+
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 
 		request.unbind(entity, model, "referenceNumber", "title", "deadline", "salary", "description", "finalMode",
 				"moreInfo");
+		model.setAttribute("employerId", entity.getEmployer().getId());
 
 	}
 
 	@Override
 	public Job instantiate(Request<Job> request) {
-		// TODO Auto-generated method stub
 		Job result;
+		Employer e;
 
 		result = new Job();
-
+		int employerId = request.getPrincipal().getAccountId();
+		e = this.authenticatedEmployerRepository.findOneEmployerByUserAccountId(employerId);
+		if (e != null) {
+			result.setEmployer(e);
+		}
+		result.setFinalMode(false);
 		return result;
 
 	}
 
 	@Override
 	public void validate(Request<Job> request, Job entity, Errors errors) {
-		// TODO Auto-generated method stub
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
@@ -87,7 +89,8 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 
 	@Override
 	public void create(Request<Job> request, Job entity) {
-		// TODO Auto-generated method stub
+		assert request != null;
+		assert entity != null;
 		this.employerJobRepository.save(entity);
 	}
 
