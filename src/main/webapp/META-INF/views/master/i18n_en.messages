@@ -47,6 +47,7 @@ master.menu.administrator.announcement.create = Create announcement
 master.menu.administrator.challenge.create = Create challenge
 master.menu.administrator.company-record.create = Create Company Record
 master.menu.employer.job = Job
+master.menu.administrator.auditor.list = Pending Auditors
 
 # master.menu.provider ########################################################
 
@@ -91,6 +92,8 @@ master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.announcement = Announcements
 master.menu.provider.request = Create Request
 master.menu.administrator.company-record=Company Record
+master.menu.storage.become-auditor = Become auditor
+
 # master.menu.investor ##########################################################
 
 master.menu.investor = Investor

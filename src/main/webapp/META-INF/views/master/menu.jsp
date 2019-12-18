@@ -117,7 +117,7 @@
 				access="!hasRole('Consumer')" />
 			<acme:menu-suboption code="master.menu.user-account.consumer" action="/authenticated/consumer/update"
 				access="hasRole('Consumer')" />
-			<acme:menu-suboption code="master.menu.storage.auditor" action="/authenticated/storage/create" access="!hasRole('Auditor')"/>
+			<acme:menu-suboption code="master.menu.storage.become-auditor" action="/authenticated/storage/create" access="!hasRole('Auditor')"/>
 		</acme:menu-option>
 
 
