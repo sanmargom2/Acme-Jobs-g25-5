@@ -337,21 +337,32 @@
 		<property name="userAccount" ref="consumerUserAccount" />
 	</bean>
 	
-	<!-- Members -->
-    <bean name="member1" class="acme.entities.members.Member">
+	<!-- MessageThreads -->
+	<bean name="MessageThread1" class="acme.entities.messageThreads.MessageThread">
+		<property name="title" value="MT01" />
+		<property name="moment" value="2016/10/11 20:30" />
+	</bean>
+	
+	<bean name="MessageThread2" class="acme.entities.messageThreads.MessageThread">
+		<property name="title" value="MT02" />
+		<property name="moment" value="2017/01/12 10:34" />
+	</bean>	
+	
+	<!-- Persons -->
+    <bean name="person1" class="acme.entities.persons.Person">
     	<property name="author" value="true"/>
-    	<property name="messageThread" ref="MessageThread1"/>
     	<property name="authenticated" ref="employer1Authenticated"/>
+    	<property name="messageThread" ref="MessageThread1"/>
     </bean>
-    
+    <!-- 
     <bean name="member2" class="acme.entities.members.Member">
-    	<property name="author" value="true"/>
+    	<property name="author" value="false"/>
     	<property name="messageThread" ref="MessageThread1"/>
     	<property name="authenticated" ref="employer2Authenticated"/>
     </bean>
     
     <bean name="member3" class="acme.entities.members.Member">
-    	<property name="author" value="true"/>
+    	<property name="author" value="false"/>
     	<property name="messageThread" ref="MessageThread1"/>
     	<property name="authenticated" ref="worker1Authenticated"/>
     </bean>
@@ -359,9 +370,9 @@
     <bean name="member4" class="acme.entities.members.Member">
     	<property name="author" value="true"/>
     	<property name="messageThread" ref="MessageThread2"/>
-    	<property name="authenticated" ref="employer1Authenticated"/>
-    </bean>
-	
+    	<property name="authenticated" ref="worker2Authenticated"/>
+    </bean> -->
+    	
 	<!-- Message -->
 	<bean name="Message1" class="acme.entities.messages.Message">
 		<property name="title" value="Message01" />
@@ -399,16 +410,7 @@
 		<property name="authenticated" ref="employer1Authenticated"/>
 	</bean>
 	
-	<!-- MessageThreads -->
-	<bean name="MessageThread1" class="acme.entities.messageThreads.MessageThread">
-		<property name="title" value="MT01" />
-		<property name="moment" value="2016/10/11 20:30" />
-	</bean>
 	
-	<bean name="MessageThread2" class="acme.entities.messageThreads.MessageThread">
-		<property name="title" value="MT02" />
-		<property name="moment" value="2017/01/12 10:34" />
-	</bean>	
 	
 
 	<!-- Job -->

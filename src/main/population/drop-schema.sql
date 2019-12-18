@@ -47,14 +47,6 @@
        drop 
        foreign key `FK3rxjf8uh6fh2u990pe8i2at0e`;
 
-    alter table `member` 
-       drop 
-       foreign key `FKemcj6w8loiykybn2eync7bivd`;
-
-    alter table `member` 
-       drop 
-       foreign key `FK1efqrt1f0kyg1s1sbtr4n6ar2`;
-
     alter table `message` 
        drop 
        foreign key `FK3ny0h1379q528toyokq81noiu`;
@@ -62,6 +54,14 @@
     alter table `message` 
        drop 
        foreign key `FKn5adlx3oqjna7aupm8gwg3fuj`;
+
+    alter table `person` 
+       drop 
+       foreign key `FKksb3u7mmp1dgbomtfsy7chbrd`;
+
+    alter table `person` 
+       drop 
+       foreign key `FKjyu7l9bjuiw9l7waxkcce4335`;
 
     alter table `provider` 
        drop 
@@ -103,13 +103,13 @@
 
     drop table if exists `job`;
 
-    drop table if exists `member`;
-
     drop table if exists `message`;
 
     drop table if exists `message_thread`;
 
     drop table if exists `offer`;
+
+    drop table if exists `person`;
 
     drop table if exists `provider`;
 

@@ -4,8 +4,8 @@ package acme.features.authenticated.message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.members.Member;
 import acme.entities.messages.Message;
+import acme.entities.persons.Person;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
@@ -25,7 +25,7 @@ public class AuthenticatedMessageShowService implements AbstractShowService<Auth
 
 		boolean result = false;
 		int threadId;
-		Member member;
+		Person person;
 		Principal principal;
 		Message message;
 
@@ -35,9 +35,9 @@ public class AuthenticatedMessageShowService implements AbstractShowService<Auth
 
 		message = this.repository.findOneMessageById(messageId);
 		threadId = message.getMessageThread().getId();
-		member = this.repository.findMembers(threadId, principal.getActiveRoleId());
+		person = this.repository.findPersons(threadId, principal.getActiveRoleId());
 
-		result = member != null;
+		result = person != null;
 
 		return result;
 	}

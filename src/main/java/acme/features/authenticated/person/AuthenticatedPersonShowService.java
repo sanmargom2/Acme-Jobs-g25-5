@@ -1,38 +1,38 @@
 
-package acme.features.authenticated.member;
+package acme.features.authenticated.person;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.members.Member;
 import acme.entities.messageThreads.MessageThread;
+import acme.entities.persons.Person;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
 import acme.framework.services.AbstractShowService;
 
 @Service
-public class AuthenticatedMemberShowService implements AbstractShowService<Authenticated, Member> {
+public class AuthenticatedPersonShowService implements AbstractShowService<Authenticated, Person> {
 
 	@Autowired
-	AuthenticatedMemberRepository repository;
+	AuthenticatedPersonRepository repository;
 
 
 	@Override
-	public boolean authorise(final Request<Member> request) {
+	public boolean authorise(final Request<Person> request) {
 		assert request != null;
 
-		Member member;
+		Person person;
 		MessageThread messageThread;
 
-		messageThread = this.repository.findMemberById(request.getModel().getInteger("id")).getMessageThread();
-		member = this.repository.findMemberInThread(messageThread.getId(), request.getPrincipal().getActiveRoleId());
+		messageThread = this.repository.findPersonById(request.getModel().getInteger("id")).getMessageThread();
+		person = this.repository.findPersonInThread(messageThread.getId(), request.getPrincipal().getActiveRoleId());
 
-		return member.isAuthor();
+		return person.isAuthor();
 	}
 
 	@Override
-	public void unbind(final Request<Member> request, final Member entity, final Model model) {
+	public void unbind(final Request<Person> request, final Person entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
@@ -41,14 +41,14 @@ public class AuthenticatedMemberShowService implements AbstractShowService<Authe
 	}
 
 	@Override
-	public Member findOne(final Request<Member> request) {
+	public Person findOne(final Request<Person> request) {
 		assert request != null;
 
-		Member result;
+		Person result;
 		int id;
 
 		id = request.getModel().getInteger("id");
-		result = this.repository.findMemberById(id);
+		result = this.repository.findPersonById(id);
 
 		return result;
 	}

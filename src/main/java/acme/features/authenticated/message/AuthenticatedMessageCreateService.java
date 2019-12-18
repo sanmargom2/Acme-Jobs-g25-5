@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.customisations.Customisation;
-import acme.entities.members.Member;
 import acme.entities.messageThreads.MessageThread;
 import acme.entities.messages.Message;
+import acme.entities.persons.Person;
 import acme.features.administrator.customisation.AdministratorCustomisationRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.HttpMethod;
@@ -32,9 +32,9 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 	public boolean authorise(final Request<Message> request) {
 		assert request != null;
 
-		Member member;
+		Person member;
 
-		member = this.repository.findMembers(request.getModel().getInteger("messageThread.id"), request.getPrincipal().getActiveRoleId());
+		member = this.repository.findPersons(request.getModel().getInteger("messageThread.id"), request.getPrincipal().getActiveRoleId());
 
 		return member != null;
 	}
@@ -101,7 +101,7 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		if (entity.getId() != 0) {
 			c = this.customisationRepository.findOne();
 			//Cambiar a Customisations
-			String[] partes = c.getCustomisationsEs().split(",");
+			String[] partes = c.getCustomisations().split(",");
 
 			for (String parte : partes) {
 				if (message.getTitle().contains(parte.trim())) {// falta spam

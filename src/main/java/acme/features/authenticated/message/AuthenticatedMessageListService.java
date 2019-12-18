@@ -6,8 +6,8 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.members.Member;
 import acme.entities.messages.Message;
+import acme.entities.persons.Person;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
@@ -27,14 +27,14 @@ public class AuthenticatedMessageListService implements AbstractListService<Auth
 
 		boolean result = false;
 		int messageThreadId;
-		Member member;
+		Person person;
 		Principal principal;
 
 		principal = request.getPrincipal();
 		messageThreadId = request.getModel().getInteger("threadId");
-		member = this.repository.findMembers(messageThreadId, principal.getActiveRoleId());
+		person = this.repository.findPersons(messageThreadId, principal.getActiveRoleId());
 
-		result = member != null;
+		result = person != null;
 
 		return result;
 	}

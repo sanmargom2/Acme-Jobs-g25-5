@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.messageThreads.MessageThread;
-import acme.features.authenticated.member.AuthenticatedMemberCreateService;
+import acme.features.authenticated.person.AuthenticatedPersonCreateService;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -22,7 +22,7 @@ public class AuthenticatedMessageThreadCreateService implements AbstractCreateSe
 	private AuthenticatedMessageThreadRepository	repository;
 
 	@Autowired
-	private AuthenticatedMemberCreateService		memberService;
+	private AuthenticatedPersonCreateService		memberService;
 
 
 	@Override

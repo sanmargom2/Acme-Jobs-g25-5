@@ -1,5 +1,5 @@
 
-package acme.entities.members;
+package acme.entities.persons;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -15,11 +15,10 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Member extends DomainEntity {
+public class Person extends DomainEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@NotNull
 	private boolean				author;
 
 	@NotNull
@@ -31,5 +30,4 @@ public class Member extends DomainEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private MessageThread		messageThread;
-
 }

@@ -1,11 +1,11 @@
 
-package acme.features.authenticated.member;
+package acme.features.authenticated.person;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.members.Member;
 import acme.entities.messageThreads.MessageThread;
+import acme.entities.persons.Person;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -13,24 +13,24 @@ import acme.framework.entities.Authenticated;
 import acme.framework.services.AbstractCreateService;
 
 @Service
-public class AuthenticatedMemberCreateService implements AbstractCreateService<Authenticated, Member> {
+public class AuthenticatedPersonCreateService implements AbstractCreateService<Authenticated, Person> {
 
 	@Autowired
-	AuthenticatedMemberRepository repository;
+	AuthenticatedPersonRepository repository;
 
 
 	@Override
-	public boolean authorise(final Request<Member> request) {
+	public boolean authorise(final Request<Person> request) {
 		assert request != null;
 
-		Member member;
+		Person member;
 
-		member = this.repository.findMemberInThread(request.getModel().getInteger("thread.id"), request.getPrincipal().getActiveRoleId());
+		member = this.repository.findPersonInThread(request.getModel().getInteger("thread.id"), request.getPrincipal().getActiveRoleId());
 		return member.isAuthor();
 	}
 
 	@Override
-	public void bind(final Request<Member> request, final Member entity, final Errors errors) {
+	public void bind(final Request<Person> request, final Person entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
@@ -47,7 +47,7 @@ public class AuthenticatedMemberCreateService implements AbstractCreateService<A
 	}
 
 	@Override
-	public void unbind(final Request<Member> request, final Member entity, final Model model) {
+	public void unbind(final Request<Person> request, final Person entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
@@ -56,10 +56,10 @@ public class AuthenticatedMemberCreateService implements AbstractCreateService<A
 	}
 
 	@Override
-	public Member instantiate(final Request<Member> request) {
-		Member member;
+	public Person instantiate(final Request<Person> request) {
+		Person member;
 
-		member = new Member();
+		member = new Person();
 		MessageThread messageThread;
 
 		messageThread = this.repository.findOneMessageThreadById(request.getModel().getInteger("thread.id"));
@@ -69,7 +69,7 @@ public class AuthenticatedMemberCreateService implements AbstractCreateService<A
 	}
 
 	@Override
-	public void validate(final Request<Member> request, final Member entity, final Errors errors) {
+	public void validate(final Request<Person> request, final Person entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
@@ -80,12 +80,12 @@ public class AuthenticatedMemberCreateService implements AbstractCreateService<A
 		errors.state(request, authenticated != null, "authenticated.userAccount.username", "authenticated.member.error.invalidUsername");
 
 		if (authenticated != null) {
-			errors.state(request, this.repository.findMemberInThread(request.getModel().getInteger("thread.id"), authenticated.getId()) == null, "authenticated.userAccount.username", "authenticated.member.error.duplicated");
+			errors.state(request, this.repository.findPersonInThread(request.getModel().getInteger("thread.id"), authenticated.getId()) == null, "authenticated.userAccount.username", "authenticated.member.error.duplicated");
 		}
 	}
 
 	@Override
-	public void create(final Request<Member> request, final Member entity) {
+	public void create(final Request<Person> request, final Person entity) {
 		assert entity != null;
 
 		this.repository.save(entity);
@@ -93,7 +93,7 @@ public class AuthenticatedMemberCreateService implements AbstractCreateService<A
 	}
 
 	public void createFromMessageThread(final int authenticatedId, final MessageThread messageThread) {
-		Member member = new Member();
+		Person member = new Person();
 		member.setAuthenticated(this.repository.findUserById(authenticatedId));
 		member.setAuthor(true);
 		member.setMessageThread(messageThread);

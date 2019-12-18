@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.member;
+package acme.features.authenticated.person;
 
 import javax.annotation.PostConstruct;
 
@@ -7,26 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import acme.entities.members.Member;
+import acme.entities.persons.Person;
 import acme.framework.components.BasicCommand;
 import acme.framework.controllers.AbstractController;
 import acme.framework.entities.Authenticated;
 
 @Controller
-@RequestMapping("/authenticated/member")
-public class AuthenticatedMemberController extends AbstractController<Authenticated, Member> {
+@RequestMapping("/authenticated/person")
+public class AuthenticatedPersonController extends AbstractController<Authenticated, Person> {
 
 	@Autowired
-	AuthenticatedMemberListService		listService;
+	AuthenticatedPersonListService		listService;
 
 	@Autowired
-	AuthenticatedMemberShowService		showService;
+	AuthenticatedPersonShowService		showService;
 
 	@Autowired
-	AuthenticatedMemberCreateService	createService;
+	AuthenticatedPersonCreateService	createService;
 
 	@Autowired
-	AuthenticatedMemberDeleteService	deleteService;
+	AuthenticatedPersonDeleteService	deleteService;
 
 
 	@PostConstruct
