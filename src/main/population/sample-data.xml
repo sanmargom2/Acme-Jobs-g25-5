@@ -638,7 +638,7 @@
 		<bean id="duty2" class="acme.entities.duties.Duty">
 		<property name="title" value="Duty2" />
 		<property name="description" value="Duty number two" />
-		<property name="percentage" value="52" />
+		<property name="percentage" value="100" />
 		<property name="job" ref="job2"/>
 	</bean>
 		<bean id="duty3" class="acme.entities.duties.Duty">
