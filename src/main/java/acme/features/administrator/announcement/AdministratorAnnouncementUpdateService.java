@@ -71,7 +71,6 @@ public class AdministratorAnnouncementUpdateService implements AbstractUpdateSer
 	public void update(final Request<Announcement> request, final Announcement entity) {
 		assert request != null;
 		assert entity != null;
-
 		Date moment;
 
 		moment = new Date(System.currentTimeMillis() - 1);

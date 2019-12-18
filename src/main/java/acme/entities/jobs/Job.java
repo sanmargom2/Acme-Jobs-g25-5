@@ -34,7 +34,7 @@ public class Job extends DomainEntity {
 	private String referenceNumber;
 
 	@NotNull
-	private Boolean finalMode;
+	private boolean finalMode;
 
 
 	@NotBlank

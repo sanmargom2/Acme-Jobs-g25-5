@@ -228,9 +228,8 @@
 
 	<!-- Customisation -->
 	<bean id="customisation" class="acme.entities.customisations.Customisation">
-		<property name="customisationsEn" value="sex, hard core, viagra, cialis,  nigeria, you’ve won, million dollar" />
-		<property name="customisationsEs" value="sexo, hard core viagra, cialis,  nigeria, has ganado, millon dolares" />
-		<property name="threshold" value="1.00" />
+		<property name="customisations" value="sex, hard core, viagra, cialis,  nigeria, you’ve won, million dollar,sexo, hard core, viagra, cialis,  nigeria, has ganado, millon dolares" />
+		<property name="threshold" value="1" />
 	</bean>
 
 	<!-- Shouts -->
@@ -338,6 +337,42 @@
 		<property name="userAccount" ref="consumerUserAccount" />
 	</bean>
 	
+	<!-- MessageThreads -->
+	<bean name="MessageThread1" class="acme.entities.messageThreads.MessageThread">
+		<property name="title" value="MT01" />
+		<property name="moment" value="2016/10/11 20:30" />
+	</bean>
+	
+	<bean name="MessageThread2" class="acme.entities.messageThreads.MessageThread">
+		<property name="title" value="MT02" />
+		<property name="moment" value="2017/01/12 10:34" />
+	</bean>	
+	
+	<!-- Persons -->
+    <bean name="person1" class="acme.entities.persons.Person">
+    	<property name="author" value="true"/>
+    	<property name="authenticated" ref="employer1Authenticated"/>
+    	<property name="messageThread" ref="MessageThread1"/>
+    </bean>
+    
+    <bean name="person2" class="acme.entities.persons.Person">
+    	<property name="author" value="false"/>
+    	<property name="messageThread" ref="MessageThread1"/>
+    	<property name="authenticated" ref="employer2Authenticated"/>
+    </bean>
+    
+    <bean name="person3" class="acme.entities.persons.Person">
+    	<property name="author" value="false"/>
+    	<property name="messageThread" ref="MessageThread1"/>
+    	<property name="authenticated" ref="worker1Authenticated"/>
+    </bean>
+    
+    <bean name="person4" class="acme.entities.persons.Person">
+    	<property name="author" value="true"/>
+    	<property name="messageThread" ref="MessageThread2"/>
+    	<property name="authenticated" ref="worker2Authenticated"/>
+    </bean> 
+    	
 	<!-- Message -->
 	<bean name="Message1" class="acme.entities.messages.Message">
 		<property name="title" value="Message01" />
@@ -345,7 +380,7 @@
 		<property name="tags" value="#Help" />
 		<property name="body" value="this is a message" />
 		<property name="messageThread" ref="MessageThread1" />
-		
+		<property name="authenticated" ref="employer1Authenticated"/>
 	</bean>
 	
 	<bean name="Message2" class="acme.entities.messages.Message">
@@ -354,7 +389,7 @@
 		<property name="tags" value="#Help" />
 		<property name="body" value="this is another message" />
 		<property name="messageThread" ref="MessageThread1" />
-
+		<property name="authenticated" ref="employer2Authenticated"/>
 	</bean>
 	
 	<bean name="Message3" class="acme.entities.messages.Message">
@@ -363,6 +398,7 @@
 		<property name="tags" value="#Message, #F" />
 		<property name="body" value="This is a message in MessageThread2" />
 		<property name="messageThread" ref="MessageThread2" />
+		<property name="authenticated" ref="employer1Authenticated"/>
 	</bean>
 	
 	<bean name="Message4" class="acme.entities.messages.Message">
@@ -371,30 +407,10 @@
 		<property name="tags" value="#Message, #F" />
 		<property name="body" value="This is another message in MessageThread2" />
 		<property name="messageThread" ref="MessageThread2" />
+		<property name="authenticated" ref="employer1Authenticated"/>
 	</bean>
 	
-	<!-- MessageThread -->
-	<bean name="MessageThread1" class="acme.entities.messageThreads.MessageThread">
-		<property name="title" value="MT01" />
-		<property name="moment" value="2016/10/11 20:30" />
-		<property name="members">
-			<list>
-				<ref bean="employer1Authenticated"/>
-				<ref bean="employer2Authenticated"/>
-			</list>
-		</property>
-	</bean>
 	
-	<bean name="MessageThread2" class="acme.entities.messageThreads.MessageThread">
-		<property name="title" value="MT02" />
-		<property name="moment" value="2017/01/12 10:34" />
-		<property name="members">
-			<list>
-				<ref bean="worker1Authenticated"/>
-				<ref bean="worker2Authenticated"/>
-			</list>
-		</property>
-	</bean>	
 	
 
 	<!-- Job -->
@@ -423,10 +439,21 @@
 
 	<bean id="job3" class="acme.entities.jobs.Job">
 		<property name="referenceNumber" value="EMP2-JOB1" />
-		<property name="finalMode" value="false" />
+		<property name="finalMode" value="true" />
 		<property name="description" value="Gomez" />
 		<property name="title" value="Title 3" />
 		<property name="deadline" value="2010/09/10 23:00" />
+		<property name="salary" ref="money06" />
+		<property name="moreInfo" value="http://www.example.com" />
+		<property name="employer" ref="employer2Employer" />
+	</bean>
+	
+	<bean id="job4" class="acme.entities.jobs.Job">
+		<property name="referenceNumber" value="EMP2-JOB3" />
+		<property name="finalMode" value="false" />
+		<property name="description" value="Gomez" />
+		<property name="title" value="Title 3" />
+		<property name="deadline" value="2015/09/10 23:00" />
 		<property name="salary" ref="money06" />
 		<property name="moreInfo" value="http://www.example.com" />
 		<property name="employer" ref="employer2Employer" />
@@ -559,6 +586,7 @@
 		<property name="statement" value="Statement 1" />
 		<property name="skills" value="Skill 1, Skill 2" />
 		<property name="qualifications" value="Qualification 1, Qualification 2" />
+		<property name="justification" value="" />
 		<property name="worker" ref="worker1Worker" />
 		<property name="job" ref="job1" />
 	</bean>
@@ -570,6 +598,7 @@
 		<property name="statement" value="Statement 2" />
 		<property name="skills" value="Skill 1, Skill 2" />
 		<property name="qualifications" value="Qualification 1, Qualification 2" />
+		<property name="justification" value="" />
 		<property name="worker" ref="worker2Worker" />
 		<property name="job" ref="job2" />
 	</bean>
@@ -581,7 +610,20 @@
 		<property name="statement" value="Statement 3" />
 		<property name="skills" value="Skill 1, Skill 2" />
 		<property name="qualifications" value="Qualification 1, Qualification 2" />
+		<property name="justification" value="This was rejected because ..." />
 		<property name="worker" ref="worker1Worker" />
+		<property name="job" ref="job3" />
+	</bean>
+		
+	<bean id="application4" class="acme.entities.applications.Application">
+		<property name="reference" value="EEHY-JXXX:WWWW" />
+		<property name="moment" value="2019/01/07 18:00" />
+		<property name="status" value="PENDING" />
+		<property name="statement" value="Statement 1" />
+		<property name="skills" value="Skill 1, Skill 2" />
+		<property name="qualifications" value="Qualification 1, Qualification 2" />
+		<property name="justification" value="" />
+		<property name="worker" ref="worker2Worker" />
 		<property name="job" ref="job3" />
 	</bean>
 
@@ -589,7 +631,7 @@
 	<bean id="duty1" class="acme.entities.duties.Duty">
 		<property name="title" value="Duty1" />
 		<property name="description" value="Duty number one" />
-		<property name="percentage" value="51" />
+		<property name="percentage" value="57" />
 		<property name="job" ref="job1"/>
 	</bean>
 	
@@ -602,7 +644,7 @@
 		<bean id="duty3" class="acme.entities.duties.Duty">
 		<property name="title" value="Duty3" />
 		<property name="description" value="Duty number three" />
-		<property name="percentage" value="53" />
+		<property name="percentage" value="43" />
 		<property name="job" ref="job1"/>
 	</bean>
 	

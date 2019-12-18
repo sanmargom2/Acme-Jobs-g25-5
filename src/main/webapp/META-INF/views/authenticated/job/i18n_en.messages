@@ -5,3 +5,5 @@ employer.job.form.label.deadline = Deadline
 employer.job.form.label.title = Title
 employer.job.form.label.finalMode = Final mode
 employer.job.form.label.referenceNumber = Reference number
+
+worker.job.form.label.application = Apply

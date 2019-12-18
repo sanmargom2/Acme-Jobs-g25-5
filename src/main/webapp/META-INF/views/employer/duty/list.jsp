@@ -6,4 +6,5 @@
 <acme:list>
 	<acme:list-column code="employer.duty.list.label.description" path="description" width="40%" />
 	<acme:list-column code="employer.duty.list.label.title" path="title" width="50%" />
+	
 </acme:list>

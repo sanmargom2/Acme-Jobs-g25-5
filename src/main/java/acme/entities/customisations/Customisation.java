@@ -23,13 +23,10 @@ public class Customisation extends DomainEntity {
 
 	@NotBlank
 	@Column(length = 1024)
-	private String				customisationsEn;
+	private String				customisations;
 
-	@NotBlank
-	@Column(length = 1024)
-	private String				customisationsEs;
 
 	@NotNull
-	private Double				threshold;
+	private Integer				threshold;
 
 }
