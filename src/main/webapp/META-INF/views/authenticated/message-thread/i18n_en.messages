@@ -5,7 +5,7 @@ authenticated.messageThread.list.label.moment = Moment
 
 authenticated.messageThread.form.label.title = Title
 authenticated.messageThread.form.label.moment = Moment
-authenticated.messageThread.form.label.members = Users involved
+authenticated.messageThread.form.label.persons = Users involved
 
 authenticated.messageThread.form.button.return = Return
 authenticated.messageThread.form.messages = Go to Messages

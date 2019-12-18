@@ -4,12 +4,12 @@
 
 <tiles-definitions>
 
-	<definition name="authenticated/member/list" extends="master">
-		<put-attribute name="body" type="template" value="../authenticated/member/list.jsp" />
+	<definition name="authenticated/person/list" extends="master">
+		<put-attribute name="body" type="template" value="../authenticated/person/list.jsp" />
 	</definition>
 	
-	<definition name="authenticated/member/form" extends="master">
-		<put-attribute name="body" type="template" value="../authenticated/member/form.jsp" />
+	<definition name="authenticated/person/form" extends="master">
+		<put-attribute name="body" type="template" value="../authenticated/person/form.jsp" />
 	</definition>
 
 </tiles-definitions>

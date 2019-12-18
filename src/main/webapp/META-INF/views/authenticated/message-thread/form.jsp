@@ -21,9 +21,9 @@
 				<acme:message code="authenticated.messageThread.form.messages"/>
 		</button>
 		<jstl:if test="${author}">
-			<button type="button" onclick="javascript: clearReturnUrl(); redirect('/authenticated/member/list?id=${id}')"
+			<button type="button" onclick="javascript: clearReturnUrl(); redirect('/authenticated/person/list?id=${id}')"
 					class="btn btn-default">
-					<acme:message code="authenticated.messageThread.form.members"/>
+					<acme:message code="authenticated.messageThread.form.persons"/>
 			</button>
 		</jstl:if>
 	</jstl:if>
