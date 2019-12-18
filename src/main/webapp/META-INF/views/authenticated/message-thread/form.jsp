@@ -15,30 +15,19 @@
 		readonly="true" />
 	</jstl:if>
 	
-	<jstl:if test="${command == 'show'}">
-		<acme:form-textarea code="authenticated.messageThread.form.label.members" path="members" />
+	<jstl:if test="${command != 'create'}">
+		<button type="button" onclick="javascript: clearReturnUrl(); redirect('/authenticated/message/list?id=${id}')"
+				class="btn btn-default">
+				<acme:message code="authenticated.messageThread.form.messages"/>
+		</button>
+		<jstl:if test="${author}">
+			<button type="button" onclick="javascript: clearReturnUrl(); redirect('/authenticated/person/list?id=${id}')"
+					class="btn btn-default">
+					<acme:message code="authenticated.messageThread.form.persons"/>
+			</button>
+		</jstl:if>
 	</jstl:if>
 
-<!-- Elegir entre todos los authenticateds del sistema -->	
-	<jstl:if test="${command == 'create'}">
-	<sql:setDataSource var="snapshot"
-	url="jdbc:mysql://localhost:3306/acme-jobs?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
-	user="acme-user" password="ACME-Us3r-P@ssw0rd" />
-	<sql:query dataSource="${snapshot}" var="result">
-		select * from user_account;
-	</sql:query>
-	
-	
-	<%-- <jstl:out value="${result.rows}"></jstl:out> --%>
-	<jstl:forEach var="row" items="${result.rows}">
-			
-		<acme:form-option code="authenticated.messageThread.form.label.members" value="${row.username}" />
-			
-			
-	</jstl:forEach>
-		
-	</jstl:if>
-	
 	<acme:form-submit test="${command == 'create'}"
 	code="authenticated.messageThread.form.button.create"
 	action="/authenticated/message-thread/create/" />
@@ -46,13 +35,4 @@
 	
 	<acme:form-return code="authenticated.messageThread.form.button.return"/>
 	
-	<jstl:if test="${command == 'show'}">
-		<acme:form-submit code="authenticated.messageThread.form.messages" 	method="get" action="/authenticated/message/list?threadId=${id}"/>
-	</jstl:if>
-	
-	<jstl:if test="${command == 'show'}">
-		<acme:menu-option code="authenticated.messageThread.form.button.create" action="/authenticated/message/create?threadId=${id}" />
-	</jstl:if>
-
-
 </acme:form>

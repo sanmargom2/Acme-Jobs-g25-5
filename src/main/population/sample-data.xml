@@ -337,6 +337,42 @@
 		<property name="userAccount" ref="consumerUserAccount" />
 	</bean>
 	
+	<!-- MessageThreads -->
+	<bean name="MessageThread1" class="acme.entities.messageThreads.MessageThread">
+		<property name="title" value="MT01" />
+		<property name="moment" value="2016/10/11 20:30" />
+	</bean>
+	
+	<bean name="MessageThread2" class="acme.entities.messageThreads.MessageThread">
+		<property name="title" value="MT02" />
+		<property name="moment" value="2017/01/12 10:34" />
+	</bean>	
+	
+	<!-- Persons -->
+    <bean name="person1" class="acme.entities.persons.Person">
+    	<property name="author" value="true"/>
+    	<property name="authenticated" ref="employer1Authenticated"/>
+    	<property name="messageThread" ref="MessageThread1"/>
+    </bean>
+    
+    <bean name="person2" class="acme.entities.persons.Person">
+    	<property name="author" value="false"/>
+    	<property name="messageThread" ref="MessageThread1"/>
+    	<property name="authenticated" ref="employer2Authenticated"/>
+    </bean>
+    
+    <bean name="person3" class="acme.entities.persons.Person">
+    	<property name="author" value="false"/>
+    	<property name="messageThread" ref="MessageThread1"/>
+    	<property name="authenticated" ref="worker1Authenticated"/>
+    </bean>
+    
+    <bean name="person4" class="acme.entities.persons.Person">
+    	<property name="author" value="true"/>
+    	<property name="messageThread" ref="MessageThread2"/>
+    	<property name="authenticated" ref="worker2Authenticated"/>
+    </bean> 
+    	
 	<!-- Message -->
 	<bean name="Message1" class="acme.entities.messages.Message">
 		<property name="title" value="Message01" />
@@ -344,7 +380,7 @@
 		<property name="tags" value="#Help" />
 		<property name="body" value="this is a message" />
 		<property name="messageThread" ref="MessageThread1" />
-		
+		<property name="authenticated" ref="employer1Authenticated"/>
 	</bean>
 	
 	<bean name="Message2" class="acme.entities.messages.Message">
@@ -353,7 +389,7 @@
 		<property name="tags" value="#Help" />
 		<property name="body" value="this is another message" />
 		<property name="messageThread" ref="MessageThread1" />
-
+		<property name="authenticated" ref="employer2Authenticated"/>
 	</bean>
 	
 	<bean name="Message3" class="acme.entities.messages.Message">
@@ -362,6 +398,7 @@
 		<property name="tags" value="#Message, #F" />
 		<property name="body" value="This is a message in MessageThread2" />
 		<property name="messageThread" ref="MessageThread2" />
+		<property name="authenticated" ref="employer1Authenticated"/>
 	</bean>
 	
 	<bean name="Message4" class="acme.entities.messages.Message">
@@ -370,30 +407,10 @@
 		<property name="tags" value="#Message, #F" />
 		<property name="body" value="This is another message in MessageThread2" />
 		<property name="messageThread" ref="MessageThread2" />
+		<property name="authenticated" ref="employer1Authenticated"/>
 	</bean>
 	
-	<!-- MessageThread -->
-	<bean name="MessageThread1" class="acme.entities.messageThreads.MessageThread">
-		<property name="title" value="MT01" />
-		<property name="moment" value="2016/10/11 20:30" />
-		<property name="members">
-			<list>
-				<ref bean="employer1Authenticated"/>
-				<ref bean="employer2Authenticated"/>
-			</list>
-		</property>
-	</bean>
 	
-	<bean name="MessageThread2" class="acme.entities.messageThreads.MessageThread">
-		<property name="title" value="MT02" />
-		<property name="moment" value="2017/01/12 10:34" />
-		<property name="members">
-			<list>
-				<ref bean="worker1Authenticated"/>
-				<ref bean="worker2Authenticated"/>
-			</list>
-		</property>
-	</bean>	
 	
 
 	<!-- Job -->

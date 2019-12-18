@@ -173,6 +173,7 @@
         `moment` datetime(6),
         `tags` varchar(255),
         `title` varchar(255),
+        `authenticated_id` integer not null,
         `message_thread_id` integer not null,
         primary key (`id`)
     ) engine=InnoDB;
@@ -183,11 +184,6 @@
         `moment` datetime(6),
         `title` varchar(255),
         primary key (`id`)
-    ) engine=InnoDB;
-
-    create table `message_thread_authenticated` (
-       `message_thread_id` integer not null,
-        `members_id` integer not null
     ) engine=InnoDB;
 
     create table `offer` (
@@ -202,6 +198,15 @@
         `text` varchar(1024),
         `ticker` varchar(255),
         `title` varchar(255),
+        primary key (`id`)
+    ) engine=InnoDB;
+
+    create table `person` (
+       `id` integer not null,
+        `version` integer not null,
+        `author` bit not null,
+        `authenticated_id` integer not null,
+        `message_thread_id` integer not null,
         primary key (`id`)
     ) engine=InnoDB;
 
@@ -341,17 +346,22 @@
        references `employer` (`id`);
 
     alter table `message` 
+       add constraint `FK3ny0h1379q528toyokq81noiu` 
+       foreign key (`authenticated_id`) 
+       references `authenticated` (`id`);
+
+    alter table `message` 
        add constraint `FKn5adlx3oqjna7aupm8gwg3fuj` 
        foreign key (`message_thread_id`) 
        references `message_thread` (`id`);
 
-    alter table `message_thread_authenticated` 
-       add constraint `FK6fiyetsdxp8o7dfgku1ia6xdh` 
-       foreign key (`members_id`) 
+    alter table `person` 
+       add constraint `FKksb3u7mmp1dgbomtfsy7chbrd` 
+       foreign key (`authenticated_id`) 
        references `authenticated` (`id`);
 
-    alter table `message_thread_authenticated` 
-       add constraint `FKjb0tx79q4dpibs3mnkp6wfqvf` 
+    alter table `person` 
+       add constraint `FKjyu7l9bjuiw9l7waxkcce4335` 
        foreign key (`message_thread_id`) 
        references `message_thread` (`id`);
 

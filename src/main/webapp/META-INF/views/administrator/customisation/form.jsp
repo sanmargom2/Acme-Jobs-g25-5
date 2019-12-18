@@ -16,8 +16,7 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:form>
-	<acme:form-textarea code="administrator.customisation.form.label.customisationsEs" path="customisationsEs" />
-	<acme:form-textarea code="administrator.customisation.form.label.customisationsEn" path="customisationsEn" />
+	<acme:form-textarea code="administrator.customisation.form.label.customisationsEs" path="customisations" />
 	<acme:form-double code="administrator.customisation.form.label.threshold" path="threshold" />
 
 	<acme:form-submit test="${command == 'update'}" code="administrator.customisation.form.button.update"

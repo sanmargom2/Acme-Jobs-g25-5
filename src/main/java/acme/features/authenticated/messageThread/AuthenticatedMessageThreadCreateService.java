@@ -7,23 +7,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.messageThreads.MessageThread;
+import acme.features.authenticated.person.AuthenticatedPersonCreateService;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
+import acme.framework.entities.Principal;
 import acme.framework.services.AbstractCreateService;
 
 @Service
 public class AuthenticatedMessageThreadCreateService implements AbstractCreateService<Authenticated, MessageThread> {
 
 	@Autowired
-	private AuthenticatedMessageThreadRepository repository;
+	private AuthenticatedMessageThreadRepository	repository;
+
+	@Autowired
+	private AuthenticatedPersonCreateService		memberService;
 
 
 	@Override
 	public boolean authorise(final Request<MessageThread> request) {
 		assert request != null;
-		return true;
+
+		Authenticated authenticated;
+		Boolean result;
+
+		authenticated = this.repository.findUserById(request.getPrincipal().getActiveRoleId());
+
+		result = authenticated != null;
+
+		return result;
 	}
 
 	@Override
@@ -32,7 +45,7 @@ public class AuthenticatedMessageThreadCreateService implements AbstractCreateSe
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "moment");
+		request.bind(entity, errors, "title", "moment");
 
 	}
 
@@ -42,7 +55,7 @@ public class AuthenticatedMessageThreadCreateService implements AbstractCreateSe
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "members");
+		request.unbind(entity, model, "title", "moment");
 
 	}
 
@@ -51,6 +64,10 @@ public class AuthenticatedMessageThreadCreateService implements AbstractCreateSe
 		MessageThread result;
 
 		result = new MessageThread();
+
+		if (request.getModel().hasAttribute("title")) {
+			result.setTitle(request.getModel().getString("title"));
+		}
 
 		return result;
 	}
@@ -70,6 +87,12 @@ public class AuthenticatedMessageThreadCreateService implements AbstractCreateSe
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setMoment(moment);
 		this.repository.save(entity);
+
+		Principal principal;
+
+		principal = request.getPrincipal();
+
+		this.memberService.createFromMessageThread(principal.getActiveRoleId(), entity);
 
 	}
 
