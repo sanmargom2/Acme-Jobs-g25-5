@@ -7,8 +7,8 @@
 	<acme:list-column code="auditor.auditRecord.list.label.title" path="title" width="30%" />
 	<acme:list-column code="auditor.auditRecord.list.label.moment" path="moment" width="20%" />
 	<acme:list-column code="auditor.auditRecord.list.label.status" path="status" width="20%" />
-	
 </acme:list>
-	<acme:form-hidden path="jobId" />
-	<acme:form-submit test="${command == 'create'}" code="auditor.auditRecord.form.button.create" action="create?jobId=${jobId}" />
+	
+<acme:form>
 	<acme:form-return code="auditor.auditRecord.button.return"/>
+</acme:form>

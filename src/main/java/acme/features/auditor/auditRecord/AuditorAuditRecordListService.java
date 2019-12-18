@@ -31,9 +31,10 @@ public class AuditorAuditRecordListService implements AbstractListService<Audito
 		assert request != null;
 		assert entity != null;
 		assert model != null;
+		int jobId = request.getModel().getInteger("id");
 
+		model.setAttribute("jobId", jobId);
 		request.unbind(entity, model, "moment", "status", "auditor.authorityName", "title");
-		model.setAttribute("jobId", entity.getJob().getId());
 
 	}
 
