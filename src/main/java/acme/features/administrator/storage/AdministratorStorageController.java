@@ -1,5 +1,5 @@
 
-package acme.features.auditor.auditRecord;
+package acme.features.administrator.storage;
 
 import javax.annotation.PostConstruct;
 
@@ -7,29 +7,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import acme.entities.auditRecords.AuditRecord;
-import acme.entities.roles.Auditor;
+import acme.entities.storages.Storage;
 import acme.framework.components.BasicCommand;
 import acme.framework.controllers.AbstractController;
+import acme.framework.entities.Administrator;
 
 @Controller
-@RequestMapping("/auditor/audit-record/")
-public class AuditorAuditRecordController extends AbstractController<Auditor, AuditRecord> {
+@RequestMapping("/administrator/storage/")
+public class AdministratorStorageController extends AbstractController<Administrator, Storage> {
 
 	@Autowired
-	private AuditorAuditRecordListService	listService;
+	private AdministratorStorageListService		listService;
 
 	@Autowired
-	private AuditorAuditRecordShowService	showService;
+	private AdministratorStorageShowService		showService;
 
 	@Autowired
-	private AuditorAuditRecordCreateService	createService;
+	private AdministratorStorageUpdateService	updateService;
 
 
 	@PostConstruct
 	private void initialise() {
 		super.addBasicCommand(BasicCommand.LIST, this.listService);
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);
-		super.addBasicCommand(BasicCommand.CREATE, this.createService);
+		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);
 	}
+
 }

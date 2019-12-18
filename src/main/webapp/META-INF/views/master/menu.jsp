@@ -45,6 +45,8 @@
 			<acme:menu-suboption code="master.menu.user-account.announcement" action="/administrator/announcement/list" />
 			<acme:menu-suboption code="master.menu.administrator.announcement.create" action="/administrator/announcement/create" />
 			<acme:menu-separator />
+			<acme:menu-suboption code="master.menu.administrator.auditor.list" action="/administrator/storage/list"/>
+			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.authenticated.challenge" action="/authenticated/challenge/list" />
 			<acme:menu-suboption code="master.menu.administrator.challenge.create" action="/administrator/challenge/create" />
 			<acme:menu-separator />
@@ -121,6 +123,7 @@
 				access="!hasRole('Consumer')" />
 			<acme:menu-suboption code="master.menu.user-account.consumer" action="/authenticated/consumer/update"
 				access="hasRole('Consumer')" />
+			<acme:menu-suboption code="master.menu.storage.become-auditor" action="/authenticated/storage/create" access="!hasRole('Auditor')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-worker" action="/authenticated/worker/create"
 				access="!hasRole('Worker')" />
 			<acme:menu-suboption code="master.menu.user-account.become-employer" action="/authenticated/employer/create"

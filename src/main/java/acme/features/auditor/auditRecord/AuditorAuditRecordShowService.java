@@ -20,7 +20,6 @@ public class AuditorAuditRecordShowService implements AbstractShowService<Audito
 	@Override
 	public boolean authorise(final Request<AuditRecord> request) {
 		assert request != null;
-
 		return true;
 	}
 
