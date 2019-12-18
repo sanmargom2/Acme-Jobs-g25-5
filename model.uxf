@@ -403,8 +403,7 @@ Investor
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Customisation
 --
-+ customisationsEs:String{NotBlank}
-+ customisationsEn:String{NotBlank}
++ customisations:String{NotBlank}
 + threshold:Double{NotNull}</panel_attributes>
     <additional_attributes/>
   </element>
