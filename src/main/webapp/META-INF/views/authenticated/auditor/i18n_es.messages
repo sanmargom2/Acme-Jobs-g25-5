@@ -1,9 +1,0 @@
-authenticated.auditor.form.title.create = Hazte auditor
-authenticated.auditor.form.title.update = Actualizar datos auditor 
-
-authenticated.auditor.form.label.firm = Firma: 
-authenticated.auditor.form.label.responsabilityStatement = Declaración de responsabilidad:
-
-authenticated.auditor.form.button.create = Registrar 
-authenticated.auditor.form.button.update = Actualizar
-authenticated.auditor.form.button.return = Volver

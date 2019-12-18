@@ -38,8 +38,6 @@
 
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
-		    <acme:menu-suboption code="master.menu.administrator.auditor" action="/administrator/auditor/list-pending"/>
-			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.administrator.user-accounts" action="/administrator/user-account/list" />
 			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.administrator.customisations" action="/administrator/customisation/update" />
@@ -47,6 +45,8 @@
 			<acme:menu-suboption code="master.menu.user-account.announcement" action="/administrator/announcement/list" />
 			<acme:menu-suboption code="master.menu.administrator.announcement.create" action="/administrator/announcement/create" />
 			<acme:menu-separator />
+			<acme:menu-suboption code="master.menu.administrator.auditor.list" action="/administrator/storage/list"/>
+			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.authenticated.challenge" action="/authenticated/challenge/list" />
 			<acme:menu-suboption code="master.menu.administrator.challenge.create" action="/administrator/challenge/create" />
 			<acme:menu-separator />
@@ -117,8 +117,7 @@
 				access="!hasRole('Consumer')" />
 			<acme:menu-suboption code="master.menu.user-account.consumer" action="/authenticated/consumer/update"
 				access="hasRole('Consumer')" />
-			<acme:menu-suboption code="master.menu.user-account.become-auditor" action="/authenticated/auditor/create" access="!hasRole('Auditor')"/>
-			<acme:menu-suboption code="master.menu.user-account.auditor" action="/authenticated/auditor/update" access="hasRole('Auditor')"/>
+			<acme:menu-suboption code="master.menu.storage.auditor" action="/authenticated/storage/create" access="!hasRole('Auditor')"/>
 		</acme:menu-option>
 
 

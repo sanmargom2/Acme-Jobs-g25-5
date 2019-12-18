@@ -631,7 +631,6 @@
 	<bean name="Auditor1Auditor" class="acme.entities.roles.Auditor">
 		<property name="firm" value="Firm" />
 		<property name="responsibilityStatement" value="Responsibility Record" />
-		<property name="accepted" value="false" />
 		<property name="userAccount" ref="auditor1UserAccount" />
 	</bean>
 	<bean name="auditor1Authenticated" class="acme.framework.entities.Authenticated">
@@ -660,7 +659,6 @@
 	<bean name="Auditor2Auditor" class="acme.entities.roles.Auditor">
 		<property name="firm" value="firm" />
 		<property name="responsibilityStatement" value="Responsibility Record" />
-		<property name="accepted" value="true" />
 		<property name="userAccount" ref="auditor2UserAccount" />
 	</bean>
 	<bean name="auditor2Authenticated" class="acme.framework.entities.Authenticated">
