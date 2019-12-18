@@ -59,6 +59,7 @@ master.menu.provider.request.create = Crear Peticiones
 master.menu.worker.application = Aplicaciones
 master.menu.worker.application.list = Listar aplicaciones
 master.menu.employer.job= Trabajos
+master.menu.employer.job.create = Crear Trabajo
 master.menu.auditor.auditRecord.list = Listar auditores
 master.menu.auditor.auditRecord.list.mine=Mis auditores
 
@@ -90,6 +91,8 @@ master.menu.user-account.consumer = Datos de consumidor
 master.menu.user-account.become-consumer = Hazte consumidor
 master.menu.user-account.announcement = Anuncios
 master.menu.provider.request = Crear petición
+master.menu.user-account.become-worker = Hazte trabajador
+master.menu.user-account.become-employer = Hazte empleado
 
 # master.menu.investor ##########################################################
 master.menu.investor = Inversores

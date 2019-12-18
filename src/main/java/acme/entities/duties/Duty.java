@@ -35,7 +35,6 @@ public class Duty extends DomainEntity {
 
 	@NotNull
 	@Valid
-	@Cascade(value = {CascadeType.ALL })
 	@ManyToOne(optional=false)
 	private Job job;
 }

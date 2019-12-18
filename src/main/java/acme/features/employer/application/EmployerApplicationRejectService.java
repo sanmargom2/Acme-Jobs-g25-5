@@ -69,6 +69,12 @@ public class EmployerApplicationRejectService implements AbstractUpdateService<E
 			isValid = !entity.getJustification().equals("");
 			errors.state(request, isValid, "justification", "employer.application.form.error.justification");
 		}
+
+		Boolean isValid2;
+		if (!errors.hasErrors("status")) {
+			isValid2 = entity.getStatus().equals(TypeStatus.PENDING);
+			errors.state(request, isValid2, "status", "employer.application.form.error.status");
+		}
 	}
 
 	@Override

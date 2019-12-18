@@ -228,9 +228,8 @@
 
 	<!-- Customisation -->
 	<bean id="customisation" class="acme.entities.customisations.Customisation">
-		<property name="customisationsEn" value="sex, hard core, viagra, cialis,  nigeria, you’ve won, million dollar" />
-		<property name="customisationsEs" value="sexo, hard core, viagra, cialis,  nigeria, has ganado, millon dolares" />
-		<property name="threshold" value="1.00" />
+		<property name="customisations" value="sex, hard core, viagra, cialis,  nigeria, you’ve won, million dollar,sexo, hard core, viagra, cialis,  nigeria, has ganado, millon dolares" />
+		<property name="threshold" value="1" />
 	</bean>
 
 	<!-- Shouts -->

@@ -100,6 +100,9 @@
 
 		<acme:menu-option code="master.menu.employer" access="hasRole('Employer')">
 			<acme:menu-suboption code="master.menu.employer.job" action="/employer/job/list-mine" />
+			<acme:menu-suboption code="master.menu.employer.job.create" action="/employer/job/create" />
+
+			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.worker.application" action="/employer/application/list-mine" />
 		</acme:menu-option>
 	</acme:menu-left>
@@ -118,6 +121,10 @@
 				access="!hasRole('Consumer')" />
 			<acme:menu-suboption code="master.menu.user-account.consumer" action="/authenticated/consumer/update"
 				access="hasRole('Consumer')" />
+			<acme:menu-suboption code="master.menu.user-account.become-worker" action="/authenticated/worker/create"
+				access="!hasRole('Worker')" />
+			<acme:menu-suboption code="master.menu.user-account.become-employer" action="/authenticated/employer/create"
+				access="!hasRole('Employer')" />
 		</acme:menu-option>
 
 
