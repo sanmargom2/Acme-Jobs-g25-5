@@ -354,24 +354,24 @@
     	<property name="authenticated" ref="employer1Authenticated"/>
     	<property name="messageThread" ref="MessageThread1"/>
     </bean>
-    <!-- 
-    <bean name="member2" class="acme.entities.members.Member">
+    
+    <bean name="person2" class="acme.entities.persons.Person">
     	<property name="author" value="false"/>
     	<property name="messageThread" ref="MessageThread1"/>
     	<property name="authenticated" ref="employer2Authenticated"/>
     </bean>
     
-    <bean name="member3" class="acme.entities.members.Member">
+    <bean name="person3" class="acme.entities.persons.Person">
     	<property name="author" value="false"/>
     	<property name="messageThread" ref="MessageThread1"/>
     	<property name="authenticated" ref="worker1Authenticated"/>
     </bean>
     
-    <bean name="member4" class="acme.entities.members.Member">
+    <bean name="person4" class="acme.entities.persons.Person">
     	<property name="author" value="true"/>
     	<property name="messageThread" ref="MessageThread2"/>
     	<property name="authenticated" ref="worker2Authenticated"/>
-    </bean> -->
+    </bean> 
     	
 	<!-- Message -->
 	<bean name="Message1" class="acme.entities.messages.Message">

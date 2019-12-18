@@ -25,7 +25,7 @@ public class AuthenticatedPersonCreateService implements AbstractCreateService<A
 
 		Person member;
 
-		member = this.repository.findPersonInThread(request.getModel().getInteger("thread.id"), request.getPrincipal().getActiveRoleId());
+		member = this.repository.findPersonInThread(request.getModel().getInteger("messageThread.id"), request.getPrincipal().getActiveRoleId());
 		return member.isAuthor();
 	}
 
@@ -38,7 +38,7 @@ public class AuthenticatedPersonCreateService implements AbstractCreateService<A
 		Authenticated user;
 		MessageThread messageThread;
 
-		messageThread = this.repository.findOneMessageThreadById(request.getModel().getInteger("thread.id"));
+		messageThread = this.repository.findOneMessageThreadById(request.getModel().getInteger("messageThread.id"));
 		user = this.repository.findUserByUsername(request.getModel().getString("authenticated.userAccount.username"));
 		entity.setAuthenticated(user);
 		entity.setMessageThread(messageThread);
@@ -52,7 +52,7 @@ public class AuthenticatedPersonCreateService implements AbstractCreateService<A
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "author", "authenticated", "thread", "thread.title", "thread.id");
+		request.unbind(entity, model, "author", "authenticated", "messageThread", "messageThread.title", "messageThread.id");
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class AuthenticatedPersonCreateService implements AbstractCreateService<A
 		member = new Person();
 		MessageThread messageThread;
 
-		messageThread = this.repository.findOneMessageThreadById(request.getModel().getInteger("thread.id"));
+		messageThread = this.repository.findOneMessageThreadById(request.getModel().getInteger("messageThread.id"));
 		member.setMessageThread(messageThread);
 
 		return member;
@@ -80,7 +80,7 @@ public class AuthenticatedPersonCreateService implements AbstractCreateService<A
 		errors.state(request, authenticated != null, "authenticated.userAccount.username", "authenticated.member.error.invalidUsername");
 
 		if (authenticated != null) {
-			errors.state(request, this.repository.findPersonInThread(request.getModel().getInteger("thread.id"), authenticated.getId()) == null, "authenticated.userAccount.username", "authenticated.member.error.duplicated");
+			errors.state(request, this.repository.findPersonInThread(request.getModel().getInteger("messageThread.id"), authenticated.getId()) == null, "authenticated.userAccount.username", "authenticated.member.error.duplicated");
 		}
 	}
 

@@ -103,7 +103,11 @@ master.menu.authenticated.investor = Investor
 master.menu.employer = Employer
 master.menu.worker = Worker
 master.menu.auditor = Auditor
+
+# master.messageThread ########################################################
+
 master.menu.authenticated.messagethread = Message Thread
+master.menu.authenticated.messageThread.create = Create Message Thread
 
 # master.footer ###############################################################
 

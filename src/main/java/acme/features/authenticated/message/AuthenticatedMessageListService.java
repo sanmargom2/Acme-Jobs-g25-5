@@ -31,7 +31,7 @@ public class AuthenticatedMessageListService implements AbstractListService<Auth
 		Principal principal;
 
 		principal = request.getPrincipal();
-		messageThreadId = request.getModel().getInteger("threadId");
+		messageThreadId = request.getModel().getInteger("id");
 		person = this.repository.findPersons(messageThreadId, principal.getActiveRoleId());
 
 		result = person != null;
@@ -56,7 +56,7 @@ public class AuthenticatedMessageListService implements AbstractListService<Auth
 		Collection<Message> result;
 		int id;
 
-		id = request.getModel().getInteger("threadId");
+		id = request.getModel().getInteger("id");
 
 		result = this.repository.findManyByMessageThreadId(id);
 

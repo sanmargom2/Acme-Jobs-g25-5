@@ -106,7 +106,11 @@ master.menu.authenticated.job = Trabajo
 master.menu.employer = Empleado
 master.menu.worker = Trabajador
 master.menu.auditor = Auditor
+
+# master.messageThread ########################################################
+
 master.menu.authenticated.messagethread = Hilo de Mensajes
+master.menu.authenticated.messageThread.create = Crear Hilo de Mensajes
 
 # master.footer ###############################################################
 
