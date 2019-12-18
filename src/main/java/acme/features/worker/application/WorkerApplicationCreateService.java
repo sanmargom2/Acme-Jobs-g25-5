@@ -35,19 +35,19 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 	@Override
 	public boolean authorise(final Request<Application> request) {
 		assert request != null;
-		boolean result;
+		//		boolean result;
 
-		int jobId = request.getModel().getInteger("jobId");
-		Job job = this.jobRepository.findOneById(jobId);
+		//		int jobId = request.getModel().getInteger("jobId");
+		//		Job job = this.jobRepository.findOneById(jobId);
+		//
+		//		Principal principal;
+		//		principal = request.getPrincipal();
+		//
+		//		Collection<Job> jobsByWorker = this.jobRepository.findJobsByWorker(principal.getActiveRoleId());
+		//
+		//		result = !jobsByWorker.contains(job);
 
-		Principal principal;
-		principal = request.getPrincipal();
-
-		Collection<Job> jobsByWorker = this.jobRepository.findJobsByWorker(principal.getActiveRoleId());
-
-		result = !jobsByWorker.contains(job);
-
-		return result;
+		return true;
 	}
 
 	@Override
@@ -98,6 +98,19 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		assert entity != null;
 		assert errors != null;
 
+		int jobId = request.getModel().getInteger("jobId");
+		Job job = this.jobRepository.findOneById(jobId);
+
+		Principal principal;
+		principal = request.getPrincipal();
+
+		Collection<Job> jobsByWorker = this.jobRepository.findJobsByWorker(principal.getActiveRoleId());
+
+		Boolean isValid;
+		if (!errors.hasErrors("qualifications")) {
+			isValid = !jobsByWorker.contains(job);
+			errors.state(request, isValid, "qualifications", "worker.application.form.error.notapply");
+		}
 	}
 
 	@Override

@@ -20,4 +20,4 @@ worker.application.form.label.justification = Justificación del rechazo
 worker.application.form.error.finalMode = No puedes aplicar porque este trabajo no está publicado
 worker.application.form.error.deadline = No puedes aplicar porque la fecha límite ha pasado
 
-employer.application.form.error.notapply = Ya has aplicado a este trabajo
+worker.application.form.error.notapply = Ya has aplicado a este trabajo

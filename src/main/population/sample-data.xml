@@ -422,10 +422,21 @@
 
 	<bean id="job3" class="acme.entities.jobs.Job">
 		<property name="referenceNumber" value="EMP2-JOB1" />
-		<property name="finalMode" value="false" />
+		<property name="finalMode" value="true" />
 		<property name="description" value="Gomez" />
 		<property name="title" value="Title 3" />
 		<property name="deadline" value="2010/09/10 23:00" />
+		<property name="salary" ref="money06" />
+		<property name="moreInfo" value="http://www.example.com" />
+		<property name="employer" ref="employer2Employer" />
+	</bean>
+	
+	<bean id="job4" class="acme.entities.jobs.Job">
+		<property name="referenceNumber" value="EMP2-JOB3" />
+		<property name="finalMode" value="false" />
+		<property name="description" value="Gomez" />
+		<property name="title" value="Title 3" />
+		<property name="deadline" value="2015/09/10 23:00" />
 		<property name="salary" ref="money06" />
 		<property name="moreInfo" value="http://www.example.com" />
 		<property name="employer" ref="employer2Employer" />
@@ -586,20 +597,8 @@
 		<property name="worker" ref="worker1Worker" />
 		<property name="job" ref="job3" />
 	</bean>
-	
+		
 	<bean id="application4" class="acme.entities.applications.Application">
-		<property name="reference" value="EEEE-JXXX:WWWW" />
-		<property name="moment" value="2019/01/31 18:00" />
-		<property name="status" value="ACCEPTED" />
-		<property name="statement" value="Statement 1" />
-		<property name="skills" value="Skill 1, Skill 2" />
-		<property name="qualifications" value="Qualification 1, Qualification 2" />
-		<property name="justification" value="" />
-		<property name="worker" ref="worker1Worker" />
-		<property name="job" ref="job2" />
-	</bean>
-	
-	<bean id="application5" class="acme.entities.applications.Application">
 		<property name="reference" value="EEHY-JXXX:WWWW" />
 		<property name="moment" value="2019/01/07 18:00" />
 		<property name="status" value="PENDING" />
@@ -609,42 +608,6 @@
 		<property name="justification" value="" />
 		<property name="worker" ref="worker2Worker" />
 		<property name="job" ref="job3" />
-	</bean>
-	
-	<bean id="application6" class="acme.entities.applications.Application">
-		<property name="reference" value="EEHY-JXGX:WSDW" />
-		<property name="moment" value="2018/10/23 18:00" />
-		<property name="status" value="PENDING" />
-		<property name="statement" value="Statement 1" />
-		<property name="skills" value="Skill 1, Skill 2" />
-		<property name="qualifications" value="Qualification 1, Qualification 2" />
-		<property name="justification" value="" />
-		<property name="worker" ref="worker2Worker" />
-		<property name="job" ref="job1" />
-	</bean>
-	
-	<bean id="application7" class="acme.entities.applications.Application">
-		<property name="reference" value="EEHY-JLKX:WWPO" />
-		<property name="moment" value="2019/11/07 18:00" />
-		<property name="status" value="PENDING" />
-		<property name="statement" value="Statement 1" />
-		<property name="skills" value="Skill 1, Skill 2" />
-		<property name="qualifications" value="Qualification 1, Qualification 2" />
-		<property name="justification" value="" />
-		<property name="worker" ref="worker1Worker" />
-		<property name="job" ref="job1" />
-	</bean>
-	
-	<bean id="application8" class="acme.entities.applications.Application">
-		<property name="reference" value="EUYY-JXXX:WBBB" />
-		<property name="moment" value="2014/01/07 18:00" />
-		<property name="status" value="PENDING" />
-		<property name="statement" value="Statement 1" />
-		<property name="skills" value="Skill 1, Skill 2" />
-		<property name="justification" value="" />
-		<property name="qualifications" value="Qualification 1, Qualification 2" />
-		<property name="worker" ref="worker2Worker" />
-		<property name="job" ref="job1" />
 	</bean>
 
 	<!-- Duty -->
