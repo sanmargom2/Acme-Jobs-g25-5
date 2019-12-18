@@ -7,5 +7,5 @@
 
 	<acme:list-column code="authenticated.messageThread.list.label.title" path="title" width="40%" />
 	<acme:list-column code="authenticated.messageThread.list.label.moment" path="moment" width="60%" />
-	
+		
 </acme:list>

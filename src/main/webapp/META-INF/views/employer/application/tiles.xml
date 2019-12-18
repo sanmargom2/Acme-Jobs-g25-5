@@ -24,7 +24,6 @@
 	
 	<definition name="employer/application/form" extends="master">
 		<put-attribute name="body" type="template" value="../employer/application/form.jsp" />
-	</definition>
-	
+	</definition>	
 	
 </tiles-definitions>

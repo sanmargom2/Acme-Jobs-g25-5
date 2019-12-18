@@ -17,30 +17,28 @@ import acme.framework.entities.Administrator;
 public class AdministratorAnnouncementController extends AbstractController<Administrator, Announcement> {
 
 	@Autowired
-	private AdministratorAnnouncementListService listService;
+	private AdministratorAnnouncementListService	listService;
 
 	@Autowired
-	private AdministratorAnnouncementShowService showService;
+	private AdministratorAnnouncementShowService	showService;
 
 	@Autowired
-
-	private AdministratorAnnouncementCreateService createService;
-
-	@Autowired
-	private AdministratorAnnouncementDeleteService deleteService;
+	private AdministratorAnnouncementCreateService	createService;
 
 	@Autowired
-	private AdministratorAnnouncementUpdateService updateService;
+	private AdministratorAnnouncementDeleteService	deleteService;
+
+	@Autowired
+	private AdministratorAnnouncementUpdateService	updateService;
 
 
 	@PostConstruct
 	private void initialise() {
 		super.addBasicCommand(BasicCommand.LIST, this.listService);
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);
-		super.addBasicCommand(BasicCommand.CREATE, createService);
-		super.addBasicCommand(BasicCommand.DELETE, deleteService);
-		super.addBasicCommand(BasicCommand.UPDATE, updateService);
-
+		super.addBasicCommand(BasicCommand.CREATE, this.createService);
+		super.addBasicCommand(BasicCommand.DELETE, this.deleteService);
+		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);
 
 	}
 

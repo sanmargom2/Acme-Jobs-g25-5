@@ -12,3 +12,12 @@ worker.application.form.label.qualifications = Calificaciones
 worker.application.form.label.worker = Trabajador
 worker.application.form.label.job = Trabajo
 worker.application.form.return = Volver
+
+worker.application.form.button.create = Aplicar
+
+worker.application.form.label.justification = Justificación del rechazo
+
+worker.application.form.error.finalMode = No puedes aplicar porque este trabajo no está publicado
+worker.application.form.error.deadline = No puedes aplicar porque la fecha límite ha pasado
+
+worker.application.form.error.notapply = Ya has aplicado a este trabajo

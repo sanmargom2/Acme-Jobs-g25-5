@@ -45,6 +45,8 @@
 			<acme:menu-suboption code="master.menu.user-account.announcement" action="/administrator/announcement/list" />
 			<acme:menu-suboption code="master.menu.administrator.announcement.create" action="/administrator/announcement/create" />
 			<acme:menu-separator />
+			<acme:menu-suboption code="master.menu.administrator.auditor.list" action="/administrator/storage/list"/>
+			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.authenticated.challenge" action="/authenticated/challenge/list" />
 			<acme:menu-suboption code="master.menu.administrator.challenge.create" action="/administrator/challenge/create" />
 			<acme:menu-separator />
@@ -76,7 +78,10 @@
 			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.anonymous.announcements" action="/authenticated/announcement/list" />
 			<acme:menu-separator />
+			<acme:menu-suboption code="master.menu.authenticated.job" action="/authenticated/job/list-mine" />
+			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.authenticated.messagethread" action="/authenticated/message-thread/list-mine" />
+			<acme:menu-suboption code="master.menu.authenticated.messageThread.create" action="/authenticated/message-thread/create" />
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.consumer" access="hasRole('Consumer')">
@@ -97,6 +102,9 @@
 
 		<acme:menu-option code="master.menu.employer" access="hasRole('Employer')">
 			<acme:menu-suboption code="master.menu.employer.job" action="/employer/job/list-mine" />
+			<acme:menu-suboption code="master.menu.employer.job.create" action="/employer/job/create" />
+
+			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.worker.application" action="/employer/application/list-mine" />
 		</acme:menu-option>
 	</acme:menu-left>
@@ -115,6 +123,11 @@
 				access="!hasRole('Consumer')" />
 			<acme:menu-suboption code="master.menu.user-account.consumer" action="/authenticated/consumer/update"
 				access="hasRole('Consumer')" />
+			<acme:menu-suboption code="master.menu.storage.become-auditor" action="/authenticated/storage/create" access="!hasRole('Auditor')"/>
+			<acme:menu-suboption code="master.menu.user-account.become-worker" action="/authenticated/worker/create"
+				access="!hasRole('Worker')" />
+			<acme:menu-suboption code="master.menu.user-account.become-employer" action="/authenticated/employer/create"
+				access="!hasRole('Employer')" />
 		</acme:menu-option>
 
 

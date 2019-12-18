@@ -13,8 +13,21 @@
 	<acme:form-url code="employer.job.form.label.moreInfo" path="moreInfo" />
 
 	<acme:form-hidden path="id" />
-	<acme:form-submit code="employer.job.form.label.duty" method="get" action="/employer/duty/list?id=${id}" />
+	<acme:form-hidden path="employerId" />
 
+	<jstl:if test="${finalMode == false}">
+		<acme:form-submit test="${command == 'show'}" code="employer.job.form.button.update" action="/employer/job/update" />
+	</jstl:if>
+
+
+	<jstl:if test="${command !='create'}">
+		<acme:form-submit code="employer.job.form.label.duty" method="get" action="/employer/duty/list?id=${id}" />
+		<acme:form-submit code="employer.job.form.label.dutyCreate" method="get" action="/employer/duty/create?id=${id}" />
+		<acme:form-submit test="${command =='show'}" code="employer.job.form.button.delete" action="/employer/job/delete/" />
+	</jstl:if>
+
+	<jstl:if test="${command =='create'}">
+		<acme:form-submit test="${command == 'create'}" code="employer.job.form.button.create" action="/employer/job/create/" />
+	</jstl:if>
 	<acme:form-return code="employer.job.form.return" />
-
 </acme:form>

@@ -49,19 +49,32 @@
 
     alter table `message` 
        drop 
+
+       foreign key `FK3ny0h1379q528toyokq81noiu`;
+
+    alter table `message` 
+       drop 
        foreign key `FKn5adlx3oqjna7aupm8gwg3fuj`;
 
-    alter table `message_thread_authenticated` 
+    alter table `person` 
        drop 
-       foreign key `FK6fiyetsdxp8o7dfgku1ia6xdh`;
+       foreign key `FKksb3u7mmp1dgbomtfsy7chbrd`;
 
-    alter table `message_thread_authenticated` 
+    alter table `person` 
        drop 
-       foreign key `FKjb0tx79q4dpibs3mnkp6wfqvf`;
+       foreign key `FKjyu7l9bjuiw9l7waxkcce4335`;
 
     alter table `provider` 
        drop 
        foreign key FK_b1gwnjqm6ggy9yuiqm0o4rlmd;
+
+    alter table `storage` 
+       drop 
+       foreign key `FKbak20tfheetwsi0t2ammfwip0`;
+
+    alter table `storage` 
+       drop 
+       foreign key FK_9x0gqgib0ufkaqlg9a10j24n5;
 
     alter table `worker` 
        drop 
@@ -103,15 +116,19 @@
 
     drop table if exists `message_thread`;
 
-    drop table if exists `message_thread_authenticated`;
 
     drop table if exists `offer`;
+
+    drop table if exists `person`;
 
     drop table if exists `provider`;
 
     drop table if exists `request`;
 
     drop table if exists `shout`;
+
+    drop table if exists `storage`;
+
 
     drop table if exists `user_account`;
 

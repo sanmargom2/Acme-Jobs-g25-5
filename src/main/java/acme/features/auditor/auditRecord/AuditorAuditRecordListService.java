@@ -22,8 +22,8 @@ public class AuditorAuditRecordListService implements AbstractListService<Audito
 	@Override
 	public boolean authorise(final Request<AuditRecord> request) {
 		assert request != null;
-
-		return true;
+		int jobId = request.getModel().getInteger("id");
+		return this.repository.IsJobFinalMode(jobId);
 	}
 
 	@Override
@@ -31,7 +31,9 @@ public class AuditorAuditRecordListService implements AbstractListService<Audito
 		assert request != null;
 		assert entity != null;
 		assert model != null;
+		int jobId = request.getModel().getInteger("id");
 
+		model.setAttribute("jobId", jobId);
 		request.unbind(entity, model, "moment", "status", "auditor.authorityName", "title");
 
 	}
