@@ -48,7 +48,7 @@ public class AuthenticatedListMineJobListService implements AbstractListService<
 		Date dateNow = cal.getTime();
 
 		result = this.repository.findManyByTime(dateNow);
-//		result.removeAll(this.repository.findManyByActive(false));
+		result.removeAll(this.repository.findManyByActive(false));
 
 		return result;
 
