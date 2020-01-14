@@ -11,6 +11,9 @@ worker.application.form.label.skills = Skills
 worker.application.form.label.qualifications = Qualifications
 worker.application.form.label.worker = Worker
 worker.application.form.label.job = Job
+worker.application.form.label.contrasena = Password
+worker.application.form.label.symbol = Symbol
+worker.application.form.label.answer = Answer
 worker.application.form.return = Return
 
 worker.application.form.button.create = Apply

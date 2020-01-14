@@ -45,7 +45,6 @@ public class AuditorAuditRecordListService implements AbstractListService<Audito
 		Collection<AuditRecord> result;
 		//		Principal principal = request.getPrincipal();
 		int id = request.getModel().getInteger("id");
-
 		result = this.repository.findAuditRecordsByJob(id);
 
 		return result;

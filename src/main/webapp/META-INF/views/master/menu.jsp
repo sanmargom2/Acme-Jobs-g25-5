@@ -62,6 +62,8 @@
 			<acme:menu-suboption code="master.menu.anonymous.company-record" action="/authenticated/company-record/list" />
 			<acme:menu-suboption code="master.menu.administrator.company-record.create" action="/administrator/company-record/create" />
 			<acme:menu-separator />
+			<acme:menu-suboption code="master.menu.administrator.dashboard" action="/administrator/dashboard/show" />
+			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.administrator.shutdown" action="/master/shutdown" />
 		</acme:menu-option>
 

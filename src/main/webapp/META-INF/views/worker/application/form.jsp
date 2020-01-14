@@ -18,6 +18,28 @@
 	<acme:form-textbox code="worker.application.form.label.skills" path="skills" />
 	<acme:form-textbox code="worker.application.form.label.qualifications" path="qualifications" />
 	<acme:form-hidden path="status" />
+	<jstl:if test="${command == 'create'}">
+		<acme:form-textbox code="worker.application.form.label.contrasena" path="contrasena"/>
+		<acme:form-textbox code="worker.application.form.label.symbol" path="symbol"/>
+	</jstl:if>
+	<jstl:if test="${hasACulp}">
+  		<acme:form-submit code="authenticated.job.form.button.culp" method="get" action="/authenticated/culp/show?id=${culpId}"/>
+		<acme:form-textbox code="employer.job.form.label.answer" path="answer"/>
+	</jstl:if>
+	<jstl:if test="${command != 'create'}">
+	   	<jstl:if test="${contrasena == ''}">
+	   	<jstl:if test="${symbol != '' }">
+		<acme:form-textbox code="worker.application.form.label.symbol" path="symbol"/>
+	</jstl:if>
+	</jstl:if>
+	<jstl:if test="${contrasena!=''}">
+            <acme:form-password code="worker.application.form.label.contrasena" path="contrasena" />
+            <acme:form-password code="worker.application.form.label.symbol" path="symbol" />
+        </jstl:if>
+	</jstl:if>
+		<jstl:if test="${answer!=''}">
+            <acme:form-password code="worker.application.form.label.answer" path="answer" />
+        </jstl:if>
 	<jstl:if test="${status == 'REJECTED'}">
 		<acme:form-textarea code="worker.application.form.label.justification" path="justification"/>
 	</jstl:if>

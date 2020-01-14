@@ -48,6 +48,7 @@ master.menu.administrator.challenge.create = Create challenge
 master.menu.administrator.company-record.create = Create Company Record
 master.menu.employer.job = Job
 master.menu.administrator.auditor.list = Pending Auditors
+master.menu.administrator.dashboard = Dashboard
 
 # master.menu.provider ########################################################
 

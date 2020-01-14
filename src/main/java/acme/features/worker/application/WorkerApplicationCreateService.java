@@ -11,6 +11,7 @@ import acme.entities.applications.Application;
 import acme.entities.applications.TypeStatus;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Worker;
+import acme.features.authenticated.culp.AuthenticatedCulpRepository;
 import acme.features.authenticated.job.AuthenticatedJobRepository;
 import acme.features.authenticated.worker.AuthenticatedWorkerRepository;
 import acme.framework.components.Errors;
@@ -30,6 +31,9 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 
 	@Autowired
 	AuthenticatedWorkerRepository	workerRepository;
+
+	@Autowired
+	AuthenticatedCulpRepository		culpRepository;
 
 
 	@Override
@@ -64,6 +68,13 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		assert request != null;
 		assert entity != null;
 		assert model != null;
+
+		int jobId = request.getModel().getInteger("jobId");
+
+		if (this.culpRepository.findOneCulpById(jobId) != null) {
+			int culpId = this.culpRepository.findOneCulpById(jobId).getId();
+			model.setAttribute("culpId", culpId);
+		}
 
 		request.unbind(entity, model, "reference", "statement", "skills", "qualifications", "worker.authorityName", "job.title");
 		model.setAttribute("jobId", entity.getJob().getId());

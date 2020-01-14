@@ -15,6 +15,8 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
+import org.springframework.lang.Nullable;
 
 import acme.entities.jobs.Job;
 import acme.entities.roles.Worker;
@@ -57,6 +59,17 @@ public class Application extends DomainEntity {
 	private String				qualifications;
 
 	private String				justification;
+
+	@Nullable
+	@Length(min = 10)
+	@Pattern(regexp = "(?=^.{10,}$)(?=(.*\\d){1,})(?=(.*[A-za-z]) {1,})(?=(.*[!@#$%^&*?]) {1,})(?!.*[\\s])^.*")
+	//@Pattern(regexp = "(^$|^(?=(.*[a-zA-Z].*){1,})(?=(.*\\d.*){1,})(?=(.*\\W.*){1,})[a-zA-Z0-9\\S]{10,}$)\n" + "")
+	private String				contrasena;
+
+	private String				answer;
+
+	@URL
+	private String				symbol;
 
 	// Relationships -------------------
 

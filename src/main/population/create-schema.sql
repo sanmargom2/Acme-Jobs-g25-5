@@ -26,6 +26,8 @@
     create table `application` (
        `id` integer not null,
         `version` integer not null,
+        `answer` varchar(255),
+        `contrasena` varchar(255),
         `justification` varchar(255),
         `moment` datetime(6),
         `qualifications` varchar(1024),
@@ -33,6 +35,7 @@
         `skills` varchar(1024),
         `statement` varchar(255),
         `status` integer,
+        `symbol` varchar(255),
         `job_id` integer not null,
         `worker_id` integer not null,
         primary key (`id`)
@@ -41,7 +44,7 @@
     create table `audit_record` (
        `id` integer not null,
         `version` integer not null,
-        `body` varchar(255),
+        `body` varchar(1024),
         `moment` datetime(6),
         `status` integer,
         `title` varchar(255),
@@ -104,6 +107,14 @@
         primary key (`id`)
     ) engine=InnoDB;
 
+    create table `culp` (
+       `id` integer not null,
+        `version` integer not null,
+        `more_info` varchar(255),
+        `text` varchar(255),
+        primary key (`id`)
+    ) engine=InnoDB;
+
     create table `curriculum` (
        `id` integer not null,
         `version` integer not null,
@@ -119,6 +130,15 @@
         `version` integer not null,
         `customisations` varchar(1024),
         `threshold` integer,
+        primary key (`id`)
+    ) engine=InnoDB;
+
+    create table `dashboard` (
+       `id` integer not null,
+        `version` integer not null,
+        `ratio_of_applications_with_answer` double precision,
+        `ratio_of_applications_with_contrasena` double precision,
+        `ratio_of_jobs_with_culp` double precision,
         primary key (`id`)
     ) engine=InnoDB;
 
@@ -156,13 +176,13 @@
         `version` integer not null,
         `deadline` datetime(6),
         `description` varchar(1024),
-
         `final_mode` bit not null,
         `more_info` varchar(255),
         `reference_number` varchar(255),
         `salary_amount` double precision,
         `salary_currency` varchar(255),
         `title` varchar(255),
+        `culp_id` integer,
         `employer_id` integer not null,
         primary key (`id`)
     ) engine=InnoDB;
@@ -187,7 +207,6 @@
         primary key (`id`)
     ) engine=InnoDB;
 
-
     create table `offer` (
        `id` integer not null,
         `version` integer not null,
@@ -202,7 +221,6 @@
         `title` varchar(255),
         primary key (`id`)
     ) engine=InnoDB;
-
 
     create table `person` (
        `id` integer not null,
@@ -256,7 +274,6 @@
         `authenticated_id` integer not null,
         primary key (`id`)
     ) engine=InnoDB;
-
 
     create table `user_account` (
        `id` integer not null,
@@ -356,12 +373,16 @@
        references `user_account` (`id`);
 
     alter table `job` 
+       add constraint `FKdt6ugvuv0tgbln9x9fk9r0kng` 
+       foreign key (`culp_id`) 
+       references `culp` (`id`);
+
+    alter table `job` 
        add constraint `FK3rxjf8uh6fh2u990pe8i2at0e` 
        foreign key (`employer_id`) 
        references `employer` (`id`);
 
     alter table `message` 
-
        add constraint `FK3ny0h1379q528toyokq81noiu` 
        foreign key (`authenticated_id`) 
        references `authenticated` (`id`);
@@ -370,7 +391,6 @@
        add constraint `FKn5adlx3oqjna7aupm8gwg3fuj` 
        foreign key (`message_thread_id`) 
        references `message_thread` (`id`);
-
 
     alter table `person` 
        add constraint `FKksb3u7mmp1dgbomtfsy7chbrd` 
@@ -396,7 +416,6 @@
        add constraint FK_9x0gqgib0ufkaqlg9a10j24n5 
        foreign key (`user_account_id`) 
        references `user_account` (`id`);
-
 
     alter table `worker` 
        add constraint FK_l5q1f33vs2drypmbdhpdgwfv3 

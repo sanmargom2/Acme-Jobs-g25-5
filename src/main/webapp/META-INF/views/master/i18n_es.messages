@@ -47,6 +47,7 @@ master.menu.administrator.announcement.create = Crear anuncio
 master.menu.administrator.challenge.create = Crear reto
 master.menu.administrator.company-record.create = Crear empresa
 master.menu.administrator.auditor.list = Auditores pendientes
+master.menu.administrator.dashboard = Tablero
 
 
 # master.menu.provider ########################################################

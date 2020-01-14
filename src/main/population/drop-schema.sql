@@ -45,11 +45,14 @@
 
     alter table `job` 
        drop 
+       foreign key `FKdt6ugvuv0tgbln9x9fk9r0kng`;
+
+    alter table `job` 
+       drop 
        foreign key `FK3rxjf8uh6fh2u990pe8i2at0e`;
 
     alter table `message` 
        drop 
-
        foreign key `FK3ny0h1379q528toyokq81noiu`;
 
     alter table `message` 
@@ -100,9 +103,13 @@
 
     drop table if exists `consumer`;
 
+    drop table if exists `culp`;
+
     drop table if exists `curriculum`;
 
     drop table if exists `customisation`;
+
+    drop table if exists `dashboard`;
 
     drop table if exists `duty`;
 
@@ -116,7 +123,6 @@
 
     drop table if exists `message_thread`;
 
-
     drop table if exists `offer`;
 
     drop table if exists `person`;
@@ -128,7 +134,6 @@
     drop table if exists `shout`;
 
     drop table if exists `storage`;
-
 
     drop table if exists `user_account`;
 
